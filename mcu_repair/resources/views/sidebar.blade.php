@@ -32,11 +32,11 @@
 
       <ul class="collapse nav nav-pills bg-light flex-column  p-3 d-lg-none d-md-none" id="mobileNav">
 
-       <li> <a href="/php-basic/public/home" class="nav-link text-start">หน้าหลัก</a></li>
-       <li> <a href="/php-basic/public/booking" class="nav-link text-start">แจ้งซ่อม</a></li>
-       <li><a href="/php-basic/public/myrepair" class="nav-link text-start">การแจ้งซ่อมของฉัน</a></li>
-       <li><a href="/php-basic/public/setting" class="nav-link text-start">โปรไฟล์</a></li>
-       <li><a href="/php-basic/public/logout" class="nav-link text-start">ออกจากระบบ</a></li>
+       <li> <a href="/home" class="nav-link text-start">หน้าหลัก</a></li>
+       <li> <a href="/booking" class="nav-link text-start">แจ้งซ่อม</a></li>
+       <li><a href="/myrepair" class="nav-link text-start">การแจ้งซ่อมของฉัน</a></li>
+       <li><a href="/setting" class="nav-link text-start">โปรไฟล์</a></li>
+       <li><a href="/logout" class="nav-link text-start">ออกจากระบบ</a></li>
 </ul>
 
 <!-- Desktop Sidebar -->
@@ -46,9 +46,9 @@
   </a>
   <hr />
   <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item"><a href="/php-basic/public/home" class="nav-link">หน้าหลัก</a></li>
-    <li class="nav-item"><a href="/php-basic/public/booking" class="nav-link">แจ้งซ่อม</a></li>
-    <li class="nav-item"><a href="/php-basic/public/myrepair"  class="nav-link">การแจ้งซ่อมของฉัน</a></li>
+    <li class="nav-item"><a href="/home" class="nav-link">หน้าหลัก</a></li>
+    <li class="nav-item"><a href="/booking" class="nav-link">แจ้งซ่อม</a></li>
+    <li class="nav-item"><a href="/myrepair"  class="nav-link">การแจ้งซ่อมของฉัน</a></li>
 
   </ul>
   <hr />
@@ -64,7 +64,7 @@
       <i class="bi bi-person-circle fs-4 me-2"></i> User
     </a>
     <ul class="dropdown-menu text-small" aria-labelledby="userDropdown">
-      <li><a class="dropdown-item" href="/php-basic/public/setting">โปรไฟล์</a></li>
+      <li><a class="dropdown-item" href="/setting">โปรไฟล์</a></li>
       <li><hr class="dropdown-divider" /></li>
       <li><a class="dropdown-item" href="/php-basic/public/logout">ออกจากระบบ</a></li>
     </ul>
