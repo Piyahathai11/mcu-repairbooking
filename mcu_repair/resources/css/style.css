@@ -1,0 +1,69 @@
+h2, h3, h4,h5 {
+    color: #e844dd;
+    text-align: center;
+    font-family: "Sarabun", sans-serif;
+  }
+  
+  .pinkbutton {
+    background-color: hotpink;
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    color: white;
+  }
+  
+  .custom-select {
+    border: none;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .progress-bar {
+    width: 50%;
+    height: 1px;
+    background-color: hotpink;
+  }
+  
+  .bg-transparent {
+    background-color: transparent !important;
+  }
+  
+  .pinkbutton a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .circle-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #FCBCF8, #F4D1F0);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  h5 {
+    text-align: center;
+    font-family: "Sarabun", sans-serif;
+  }
+  
+  .nav-link {
+    color: #e844dd;
+  }
+  
+  .nav-link:hover {
+    color: #FCBCF8;
+  }
+  
+  .progressButton {
+    background-color: #F4D1F0;
+    border: none;
+  }
