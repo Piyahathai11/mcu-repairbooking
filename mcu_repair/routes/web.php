@@ -27,3 +27,7 @@ Route::get('/sidebar', function () {
     return view('sidebar'); 
 });
 
+Route::get('/adminsidebar', function () {
+    return view('layouts.AdminSidebar'); 
+});
+

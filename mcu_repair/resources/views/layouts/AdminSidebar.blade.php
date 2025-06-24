@@ -32,8 +32,8 @@
 
       <ul class="collapse nav nav-pills bg-light flex-column  p-3 d-lg-none d-md-none" id="mobileNav">
 
-       <li> <a href="/home" class="nav-link text-start">รายงาน</a></li>
-       <li> <a href="/booking" class="nav-link text-start">รายการแจ้งซ่อม</a></li>
+       <li> <a href="#" class="nav-link text-start">รายงาน</a></li>
+       <li> <a href="#" class="nav-link text-start">รายการแจ้งซ่อม</a></li>
        <li><a href="/myrepair" class="nav-link text-start">จัดการสมาชิก</a></li>
        <li><a href="/setting" class="nav-link text-start">แจ้งลงทะเบียน</a></li>
        <li><a href="/logout" class="nav-link text-start">โปรไฟล์</a></li>
@@ -47,8 +47,8 @@
   </a>
   <hr />
   <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item"><a href="/home" class="nav-link">หน้าหลัก</a></li>
-    <li class="nav-item"><a href="/booking" class="nav-link">แจ้งซ่อม</a></li>
+    <li class="nav-item"><a href="/home" class="nav-link">1</a></li>
+    <li class="nav-item"><a href="/booking" class="nav-link">2</a></li>
     <li class="nav-item"><a href="/myrepair"  class="nav-link">การแจ้งซ่อมของฉัน</a></li>
 
   </ul>
