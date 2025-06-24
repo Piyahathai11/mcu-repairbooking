@@ -31,3 +31,7 @@ Route::get('/adminsidebar', function () {
     return view('layouts.AdminSidebar'); 
 });
 
+Route::get('/update_form', function(){
+    return view('admin.update_form');
+});
+
