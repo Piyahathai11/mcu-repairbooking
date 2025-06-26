@@ -24,8 +24,8 @@
             </div>
           </div> -->
 
-          <form enctype="multipart/form-data" class="mt-3">
-
+          <form enctype="multipart/form-data" action="{{route('booking.form')}}"  method="POST" id="booking" name="booking"  class="mt-3">
+              @csrf
             <!-- Step 1 -->
             <div id="step1">
               <h3>แจ้งซ่อม</h3>
@@ -57,7 +57,7 @@
               <h3>ข้อมูลเพิ่มเติม</h3>
               <div class="mb-3">
                 <label class="form-label">ชื่อ นามสกุล</label>
-                <input type="text" class="form-control mb-3" name="fullname" />
+                <input type="text" class="form-control mb-3" name="fullName" />
 
                 <label class="form-label">ตำแหน่ง</label>
                 <input type="text" class="form-control mb-3" name="position" required />

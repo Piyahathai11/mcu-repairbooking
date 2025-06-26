@@ -1,22 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/login',[AuthController::class, 'showLogin'])->name('login.show');
+
 Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/booking', function () {
-    return view('booking');
-});
+Route::get('/booking', [BookingController::class, 'showForm'])->name('booking');
 
-Route::get('/myrepair', function () {
-    return view('myrepair');
-});
+Route::post('/booking', [BookingController::class, 'create'])->name('booking.form');
+
+Route::get('/myrepair', [BookingController::class, 'myRepair'])->name('myrepair');
+
 
 
 Route::get('/setting', function () {

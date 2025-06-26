@@ -22,11 +22,15 @@
                 </div>
           </div>
    
-   
+        
+               
+          <div class="table-responsive">
             <table class="table table-bordered table-striped w-100">
               <thead class="thead-dark">
                 <tr>
                   <th>เลขที่</th>
+                  <th>ชื่อ-นามสกุล</th>
+                  <th>เบอร์ติดต่อ</th>
                   <th>ประเภท</th>
                   <th>รายละเอียดปัญหา</th>
                   <th>สถานที่เกิดปัญหา</th>
@@ -36,13 +40,16 @@
                 </tr>
               </thead>
               <tbody>
-
+                @foreach ($bookings as $booking)
                   <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td></td>
+                    <td>{{$booking->id}}</td>
+                    <td>{{$booking->fullName}}</td>
+                    <td>{{$booking->phone}}</td>
+                    <td>{{$booking->category}}</td>
+                    <td>{{$booking->detail}}</td>
+                    <td>{{$booking->place}}</td>
+                    <td>{{$booking->status}}</td>
+                    
                     <td>
                       <button class="btn btn-sm btn-primary">
                         view
@@ -51,11 +58,12 @@
                     <td>
                         date
                     </td>
-
+                    @endforeach
                   </tr>
 
               </tbody>
-      
+            </table>
+          </div>
         </div>
       </div>
     </div>
