@@ -47,9 +47,11 @@
   </a>
   <hr />
   <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item"><a href="/home" class="nav-link">1</a></li>
-    <li class="nav-item"><a href="/booking" class="nav-link">2</a></li>
-    <li class="nav-item"><a href="/myrepair"  class="nav-link">การแจ้งซ่อมของฉัน</a></li>
+    <li class="nav-item"><a href="/home" class="nav-link">รายงาน</a></li>
+    <li class="nav-item"><a href="/booking" class="nav-link">รายการแจ้งซ่อม</a></li>
+    <li class="nav-item"><a href="/booking" class="nav-link">จัดการสมาชิก</a></li>
+    <li class="nav-item"><a href="/myrepair"  class="nav-link">แจ้งลงทะเบียน</a></li>
+
 
   </ul>
   <hr />

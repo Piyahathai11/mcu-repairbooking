@@ -9,7 +9,7 @@ class BookingController extends Controller
 {
 
     public function showForm(){
-        return view('booking');
+        return view('user.booking');
     }
 
 
@@ -48,7 +48,7 @@ class BookingController extends Controller
 
     public function myRepair(){
         $bookings = Booking::all();
-        return view('myrepair',compact('bookings'));
+        return view('user.myrepair',compact('bookings'));
 
 
     }

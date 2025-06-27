@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.Authlayout')
 
 @section('title', 'หน้าแรก')
 
