@@ -66,10 +66,36 @@
     <ul class="dropdown-menu text-small" aria-labelledby="userDropdown">
       <li><a class="dropdown-item" href="/setting">โปรไฟล์</a></li>
       <li><hr class="dropdown-divider" /></li>
-      <li><a class="dropdown-item" href="/php-basic/public/logout">ออกจากระบบ</a></li>
+      <li><a class="dropdown-item" id="logoutButton">ออกจากระบบ</a></li>
     </ul>
   </div>
 </div>
+
+<script>
+  document.getElementById('logoutButton').addEventListener('click', () => {
+    const token = localStorage.getItem('token');
+  
+    fetch('/api/logout', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Logout failed');
+      return res.json();
+    })
+    .then(data => {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    })
+    .catch(err => {
+      alert('Logout failed: ' + err.message);
+    });
+  });
+  </script>
+  
 
 
 

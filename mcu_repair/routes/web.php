@@ -10,6 +10,10 @@ Route::get('/', function () {
 
 Route::get('/login',[AuthController::class, 'showLogin'])->name('login.show');
 
+Route::post('/login',[AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/home', function () {
     return view('home');
 });
