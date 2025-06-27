@@ -66,7 +66,11 @@
     <ul class="dropdown-menu text-small" aria-labelledby="userDropdown">
       <li><a class="dropdown-item" href="/setting">โปรไฟล์</a></li>
       <li><hr class="dropdown-divider" /></li>
-      <li><a class="dropdown-item" id="logoutButton">ออกจากระบบ</a></li>
+      <li><form id="logout-form" method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="dropdown-item">ออกจากระบบ</button>
+    </form>
+    </li>
     </ul>
   </div>
 </div>

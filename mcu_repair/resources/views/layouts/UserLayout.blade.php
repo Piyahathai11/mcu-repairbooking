@@ -10,17 +10,19 @@
 </head>
 <body>
 
- 
+  <div class="container">
 
       
-      
-
-
+      <div class="col-lg-3 col-md-3">
+        @include('layouts.sidebar')
+      </div>
+<div class="row mx-auto ms-5">
+      <div class="col-lg-8 col-md-10 mx-auto">
         @yield('content')
+      </div>
 
-
-
-
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

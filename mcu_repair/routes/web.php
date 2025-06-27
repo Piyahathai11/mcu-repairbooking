@@ -12,7 +12,29 @@ Route::get('/login',[AuthController::class, 'showLogin'])->name('login.show');
 
 Route::post('/login',[AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// SUPER_ADMIN only
+Route::middleware(['auth:sanctum', 'role:SUPER_ADMIN'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    });
+});
+
+// ADMIN and SUPER_ADMIN
+Route::middleware(['auth:sanctum', 'role:ADMIN,SUPER_ADMIN'])->group(function () {
+    Route::get('/admin/settings', function () {
+        return view('admin.settings');
+    });
+});
+
+// USER only
+Route::middleware(['auth:sanctum', 'role:USER'])->group(function () {
+    Route::get('/user/home', function () {
+        return view('user.home');
+    });
+});
 
 
 Route::middleware(['auth:sanctum', 'role:ADMIN'])->get('/admin', function () {

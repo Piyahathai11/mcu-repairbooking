@@ -1,4 +1,4 @@
-@extends('layouts.Authlayout')
+@extends('layouts.Layout')
 
 @section('title', 'เข้าสู่ระบบ')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -98,10 +98,15 @@
           return res.json();
         })
         .then(data=>{
-          if(data.token){
+     
             localStorage.setItem('token',data.token);
-            window.location.href = "/home";
-          }
+            if(data.role === "SUPER_ADMIN"){
+              window.location.href = "/dashboard";
+            }else if(data.role === "ADMIN"){
+              window.location.href = "/dashboard";
+            }else{
+              window.location.href = "/home";
+            }
         })
         .catch(err=>{
           alert('Login failed:'+ err.message);
