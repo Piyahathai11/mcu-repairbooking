@@ -36,7 +36,6 @@
        <li> <a href="/booking" class="nav-link text-start">แจ้งซ่อม</a></li>
        <li><a href="/myrepair" class="nav-link text-start">การแจ้งซ่อมของฉัน</a></li>
        <li><a href="/setting" class="nav-link text-start">โปรไฟล์</a></li>
-       <li><a href="/logout" class="nav-link text-start">ออกจากระบบ</a></li>
 </ul>
 
 <!-- Desktop Sidebar -->
@@ -66,10 +65,12 @@
     <ul class="dropdown-menu text-small" aria-labelledby="userDropdown">
       <li><a class="dropdown-item" href="/setting">โปรไฟล์</a></li>
       <li><hr class="dropdown-divider" /></li>
-      <li><form id="logout-form" method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="dropdown-item">ออกจากระบบ</button>
-    </form>
+      <li>
+        <form id="logoutForm" action="{{ route('logout')}}" method="POST">
+          @csrf
+          <button type="submit" class="dropdown-item">Logout</button>
+        </form>
+        
     </li>
     </ul>
   </div>

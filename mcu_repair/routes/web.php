@@ -12,7 +12,7 @@ Route::get('/login',[AuthController::class, 'showLogin'])->name('login.show');
 
 Route::post('/login',[AuthController::class, 'login']);
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
 
 
 // SUPER_ADMIN only
