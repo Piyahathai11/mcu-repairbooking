@@ -21,9 +21,9 @@
           <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
             <div class="card bg-glass">
               <div class="card-body px-4 py-5 px-md-5">
-                <form method="POST" action="#" id="loginForm">
+                <form method="POST" action="{{route('login.form')}}" id="loginForm">
 
-            
+                  @csrf 
                   <div class="form-outline mb-4">
                     <label class="form-label" htmlFor="userName">User name:</label>
                     <input
@@ -74,7 +74,7 @@
       </div>
     </section>
     </div>
-    <script>
+    {{-- <script>
       document.getElementById('loginForm').addEventListener('submit', function(e){
         e.preventDefault();
 
@@ -113,7 +113,7 @@
         });
       });
 
-    </script>
+    </script> --}}
 
 
 @endsection

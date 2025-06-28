@@ -5,43 +5,42 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class AuthController extends Controller
 {
     public function showLogin(){
         return view('auth.login');
     }
+
+
     public function login(Request $request){
         $credentials = request()->only(['username','password']);
-        $user = User::where('username',$credentials['username'])->first();
+       if(Auth::attempt($credentials)){
+        $request->session()->regenerate();
 
-        if(!$user || !Hash::check($credentials['password'],$user->password)){
-            abort(401);
-        }else{
-        
-            $token = $user->createToken('auth_token')->plainTextToken;
-            return response()->json([
-                'token' => $token,
-                'role' => $user->role
-            ]);
-            
+        $role = Auth::user()->role;
+        if ($role === 'SUPER_ADMIN') {
+            return redirect('/dashboard');
+        } elseif ($role === 'ADMIN') {
+            return redirect('/settings');
+        } elseif ($role === 'USER') {
+            return redirect('/home');
+        } else {
+            Auth::logout();
+            return redirect('/login')->withErrors(['login' => 'Unauthorized role']);
         }
-
+       }
+       return back()->withErrors(['login' => 'Invalid credentials.']);
     }
 
+
     public function logout(Request $request){
-
-        $user = $request->user();
-
-        if ($user && $user->currentAccessToken()) {
-            $user->currentAccessToken()->delete();
-        }
-
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect('/login');
-    
-        // return response()->json(['message' => 'Logged out successfully']);
-
-
     }
 
 }
