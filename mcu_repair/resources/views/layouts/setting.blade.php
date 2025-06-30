@@ -25,12 +25,21 @@
         <div class="card p-4 rounded bg-white w-100">
         <div class="card-body">
 
-            <form onSubmit={handleSubmit}>
-
+            <form method="GET" action="{{route('setting')}}">
+                @foreach ($info as $u)
+                    
+                <label class="form-label">user name</label>
+                <input
+                type="text"
+                class="form-control mb-3"
+                placeholder={{$u->username}}
+                required
+                />
                 <label class="form-label">ชื่อ นามสกุล</label>
                 <input
                 type="text"
                 class="form-control mb-3"
+                placeholder={{$u->fullName}}
                 required
                 />
 
@@ -38,12 +47,14 @@
                 <input
                 type="text"
                 class="form-control mb-3"
+                placeholder={{$u->position}}
                 required
                 />
 
                 <label class="form-label">บุคลากร</label>
                 <select
                 class="form-select mb-3"
+                placeholder={{$u->personnel}}
                 required
                 >
                 <option value="">-- กรุณาเลือก --</option>
@@ -55,6 +66,7 @@
                 <input
                 type="tel"
                 class="form-control mb-3"
+                placeholder={{$u->phone}}
                 required
                 />
 
@@ -70,7 +82,7 @@
                     <i class="bi bi-eye-slash-fill"></i> : <i class="bi bi-eye"></i>
                 </button>
                 </div>
-
+                @endforeach
                 <button type="submit" class="btn btn-primary w-100">
                 บันทึกข้อมูล
                 </button>

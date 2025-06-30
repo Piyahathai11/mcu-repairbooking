@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,12 +28,12 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
 // Routes for USER only
 Route::middleware(['auth', 'web', 'role:USER'])->group(function () {
     Route::get('/home', function () {
-        Log::info('🔍 Route /home hit.');
-        Log::info('👤 User:', ['user' => Auth::user()]);
+        Log::info(' Route /home hit.');
+        Log::info(' User:', ['user' => Auth::user()]);
         return view('user.home');
     });
     Route::get('/booking', [BookingController::class, 'showForm'])->name('booking');
     Route::post('/booking', [BookingController::class, 'create'])->middleware('auth')->name('booking.form');
     Route::get('/myrepair', [BookingController::class, 'myRepair'])->name('myrepair');
-    Route::get('/setting', fn() => view('layouts.setting'));
+    Route::get('/setting', [SettingController::class, 'setting'])->name('setting');
 });
