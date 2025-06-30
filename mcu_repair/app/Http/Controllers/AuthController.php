@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class AuthController extends Controller
@@ -14,6 +15,9 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function showregister(){
+        return view('auth.register');
+    }
 
     public function login(Request $request){
         $credentials = request()->only(['username','password']);
@@ -46,5 +50,12 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/login');
     }
+
+    public function register(Request $request){
+
+
+    }
+
+
 
 }

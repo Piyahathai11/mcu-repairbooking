@@ -1,0 +1,85 @@
+@extends('layouts.Layout')
+
+@section('title','ลงทะเบียน')
+
+
+@section('content')
+
+
+<div class="d-flex mx-auto justify-content-center align-items-center vw-100 ">
+    <section class="background-radial-gradient overflow-hidden">
+      <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+          <div class="col-lg-12 mb-lg-1" >
+            <h1
+              class="fw-bold me-1 ">
+              ลงทะเบียน
+            </h1>
+          </div>
+
+          <div class="col-lg-10 mb-5 mb-lg-0 ms-5 position-relative">
+            <div class="card bg-glass">
+              <div class="card-body px-4 py-5 px-md-5">
+                <form onSubmit={handleSubmit}>
+                  <div class="form-outline mb-4">
+                    <label htmlFor="fullName" class="form-label">ชื่อ-นามสกุล:</label>
+                    <input type="text" id="fullName" class="form-control" required />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label htmlFor="userName" class="form-label">Username:</label>
+                    <input type="text" id="userName" class="form-control" required  />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label htmlFor="email" class="form-label">อีเมลล์:</label>
+                    <input type="email" id="email" class="form-control" required  />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label htmlFor="tel" class="form-label">เบอร์ติดต่อ:</label>
+                    <input type="tel" id="tel" class="form-control" required/>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label htmlFor="position" class="form-label">ตำแหน่ง:</label>
+                    <input type="text" id="position" class="form-control" required  />
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label htmlFor="personel" class="form-label">บุคลากร:</label>
+                    <select
+                        class="form-select mb-3"
+                        value={personnel}
+                        required >
+                <option value="">-- กรุณาเลือก --</option>
+                <option value="บุคลากรภายใน">บุคลากรภายใน</option>
+                <option value="บุคลากรภายนอก">บุคลากรภายนอก</option>
+              </select>
+              </div>
+
+                  <div class="form-outline mb-4">
+                    <label htmlFor="password" class="form-label">รหัสผ่าน:</label>
+                    <input type="password" id="password" class="form-control" />
+                  </div>
+
+                  <button type="submit" class="pinkbutton mb-4">ลงทะเบียน</button>
+                </form>
+                <a href="/login">
+                    <button type="submit" class="pinkbutton mb-4 mt-3">
+                     เข้าสู่ระบบ
+                  </button>
+                    </a>
+            
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+
+@endsection

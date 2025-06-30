@@ -13,6 +13,7 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.form');
+Route::get('register',[AuthController::class, 'showregister']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Routes for SUPER_ADMIN only
