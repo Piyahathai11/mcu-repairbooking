@@ -52,8 +52,25 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'password'=>'required',
+        ]);
+
+        $user = USER::create([
+            'username' => $request->username,
+            'fullName' => $request->fullName,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => $request->password,
+            'position' => $request->position,
+            'personnel' => $request->personnel,
+            'status'=> $request->status,
+        ]);
 
 
+        return redirect('/login')->with('success','Registration is success');
     }
 
 

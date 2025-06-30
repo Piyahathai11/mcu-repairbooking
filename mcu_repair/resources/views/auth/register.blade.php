@@ -20,30 +20,31 @@
           <div class="col-lg-10 mb-5 mb-lg-0 ms-5 position-relative">
             <div class="card bg-glass">
               <div class="card-body px-4 py-5 px-md-5">
-                <form onSubmit={handleSubmit}>
+                <form method="POST" action="{{route('register')}}">
+                    @csrf
                   <div class="form-outline mb-4">
                     <label htmlFor="fullName" class="form-label">ชื่อ-นามสกุล:</label>
-                    <input type="text" id="fullName" class="form-control" required />
+                    <input type="text" id="fullName" name="fullName" class="form-control" required />
                   </div>
 
                   <div class="form-outline mb-4">
                     <label htmlFor="userName" class="form-label">Username:</label>
-                    <input type="text" id="userName" class="form-control" required  />
+                    <input type="text" id="userName" name="username" class="form-control" required  />
                   </div>
 
                   <div class="form-outline mb-4">
                     <label htmlFor="email" class="form-label">อีเมลล์:</label>
-                    <input type="email" id="email" class="form-control" required  />
+                    <input type="email" id="email" name="email" class="form-control" required  />
                   </div>
 
                   <div class="form-outline mb-4">
                     <label htmlFor="tel" class="form-label">เบอร์ติดต่อ:</label>
-                    <input type="tel" id="tel" class="form-control" required/>
+                    <input type="tel" id="tel" name="phone" class="form-control" required/>
                   </div>
 
                   <div class="form-outline mb-4">
                     <label htmlFor="position" class="form-label">ตำแหน่ง:</label>
-                    <input type="text" id="position" class="form-control" required  />
+                    <input type="text" id="position" name="position" class="form-control" required  />
                   </div>
 
                   <div class="form-outline mb-4">
@@ -51,6 +52,7 @@
                     <select
                         class="form-select mb-3"
                         value={personnel}
+                        name="personnel"
                         required >
                 <option value="">-- กรุณาเลือก --</option>
                 <option value="บุคลากรภายใน">บุคลากรภายใน</option>
@@ -60,15 +62,17 @@
 
                   <div class="form-outline mb-4">
                     <label htmlFor="password" class="form-label">รหัสผ่าน:</label>
-                    <input type="password" id="password" class="form-control" />
+                    <input type="password" id="password" name="password" class="form-control" />
                   </div>
 
                   <button type="submit" class="pinkbutton mb-4">ลงทะเบียน</button>
                 </form>
-                <a href="/login">
-                    <button type="submit" class="pinkbutton mb-4 mt-3">
-                     เข้าสู่ระบบ
-                  </button>
+
+                <form id="logoutForm" action="{{ route('login')}}" method="POST">
+                    @csrf
+                    <button type="submit" class="pinkbutton">Logout</button>
+                  </form>
+                  
                     </a>
             
               </div>
