@@ -37,7 +37,7 @@
        <li><a href="/myrepair" class="nav-link text-start">จัดการสมาชิก</a></li>
        <li><a href="/setting" class="nav-link text-start">แจ้งลงทะเบียน</a></li>
        <li><a href="/logout" class="nav-link text-start">โปรไฟล์</a></li>
-       <li><a href="/logout" class="nav-link text-start">ออกจากระบบ</a></li>
+
 </ul>
 
 <!-- Desktop Sidebar -->
@@ -69,12 +69,16 @@
     <ul class="dropdown-menu text-small" aria-labelledby="userDropdown">
       <li><a class="dropdown-item" href="/setting">โปรไฟล์</a></li>
       <li><hr class="dropdown-divider" /></li>
-      <li><a class="dropdown-item" id="logoutButton">ออกจากระบบ</a></li>
+      <li>  <form id="logoutForm" action="{{ route('logout')}}" method="POST">
+        @csrf
+        <button type="submit" class="dropdown-item">Logout</button>
+      </form>
+      </li>
     </ul>
   </div>
 </div>
 
-
+{{-- 
 <script>
   document.getElementById('logoutButton').addEventListener('click', () => {
     const token = localStorage.getItem('token');
@@ -98,7 +102,7 @@
       alert('Logout failed: ' + err.message);
     });
   });
-  </script>
+  </script> --}}
   
 
 
