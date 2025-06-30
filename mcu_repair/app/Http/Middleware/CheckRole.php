@@ -19,13 +19,14 @@ class CheckRole
    
     {
          if (!Auth::check()) {
-             return redirect('login');
+             return redirect('/login');
          }
 
         $user = Auth::user();
-
-        // If role is an Enum, you might need to do $user->role->value
         $userRole = is_object($user->role) ? $user->role->value : $user->role;
+        \Log::info('User Role: ' . $userRole . ' | Path: ' . $request->path());
+  
+
 
         if (!in_array($userRole, $roles)) {
             abort(403, 'Unauthorized');

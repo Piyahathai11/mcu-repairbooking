@@ -18,9 +18,13 @@ class AuthController extends Controller
     public function login(Request $request){
         $credentials = request()->only(['username','password']);
        if(Auth::attempt($credentials)){
+     
         $request->session()->regenerate();
+        
+        $user = Auth::user();
+        $role = is_object($user->role) ? $user->role->value : $user->role;
 
-        $role = Auth::user()->role;
+        \Log::info('User Role:'.$role);
         if ($role === 'SUPER_ADMIN') {
             return redirect('/dashboard');
         } elseif ($role === 'ADMIN') {
