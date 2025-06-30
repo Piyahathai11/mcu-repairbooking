@@ -3,7 +3,13 @@
 @section('title', 'แจ้งซ่อม')
 
 @section('content')
-
+@if (session('success'))
+<script>
+window.onload = function (){
+  alert("{{session('success')}}");
+}
+</script>
+@endif
 
 <div class="col-lg-9 col-md-9">
     <div class="container mt-5 mb-3">

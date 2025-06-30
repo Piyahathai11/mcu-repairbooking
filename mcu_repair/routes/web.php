@@ -32,7 +32,7 @@ Route::middleware(['auth', 'web', 'role:USER'])->group(function () {
         return view('user.home');
     });
     Route::get('/booking', [BookingController::class, 'showForm'])->name('booking');
-    Route::post('/booking', [BookingController::class, 'create'])->name('booking.form');
+    Route::post('/booking', [BookingController::class, 'create'])->middleware('auth')->name('booking.form');
     Route::get('/myrepair', [BookingController::class, 'myRepair'])->name('myrepair');
     Route::get('/setting', fn() => view('layouts.setting'));
 });

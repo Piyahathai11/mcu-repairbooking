@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -26,10 +27,11 @@ class BookingController extends Controller
             $imagePath = 'uploads/images/'. $imageName;
 
         }
-
+    
 
 
         Booking::create([
+            'user_id'=> Auth::id(),
             'category' => $request->input('category'),
             'detail' => $request->input('detail'),
             'place' => $request->input('place'),
@@ -47,7 +49,9 @@ class BookingController extends Controller
     }
 
     public function myRepair(){
-        $bookings = Booking::all();
+        $userId = Auth::id();
+        $bookings = Booking::where('user_id',$userId)->get();
+        
         return view('user.myrepair',compact('bookings'));
 
 
