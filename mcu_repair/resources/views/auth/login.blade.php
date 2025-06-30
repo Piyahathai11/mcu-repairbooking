@@ -1,4 +1,4 @@
-@extends('layouts.Layout')
+@extends('layouts.AuthLayout')
 
 @section('title', 'เข้าสู่ระบบ')
 <meta name="csrf-token" content="{{ csrf_token() }}">

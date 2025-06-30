@@ -1,4 +1,4 @@
-@extends('layouts.UserLayout')
+@extends('layouts.NormLayout')
 
 @section('title', 'การแจ้งซ่อมของฉัน')
 

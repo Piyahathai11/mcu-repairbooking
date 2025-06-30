@@ -1,11 +1,11 @@
-@extends('layouts.layout')
+@extends('layouts.NormLayout')
 
-@section('title', 'แจ้งซ่อม')
+@section('title', 'โปรไฟล์')
 <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 @section('content')
 
 
-<div class="row ms-5 mt-5">
+<div class="row ms-5 mt-5 ">
     <div class="col-10 col-md-3 d-flex justify-content-center mx-5">
                 <div style=" width: 700px; height: 700px;">
                         <dotlottie-player

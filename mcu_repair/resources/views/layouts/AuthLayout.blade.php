@@ -10,9 +10,7 @@
 </head>
 <body>
 
-  <div class="col-lg-3 col-md-3">
-    @include('layouts.AdminSidebar')
-  </div>
+ 
 
       
       
