@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Public routes
 Route::get('/', function () {
-    return view('user.home');
+    return view('login');
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -22,6 +22,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
     Route::get('/dashboard', fn() => view('admin.dashboard'));
     Route::get('/adminsidebar', fn() => view('layouts.AdminSidebar'));
+    Route::get('/repairorder', [BookingController::class, 'repairOrder']);
     Route::get('/update_form', fn() => view('admin.update_form'));
 });
 

@@ -11,12 +11,14 @@ class SidebarComposer
         $sidebar = 'layouts.sidebar'; // Default sidebar
 
         $user = Auth::user();
+   
 
         if ($user && $user->role) {
             $role = is_object($user->role) ? $user->role->value : $user->role;
-
             if ($role === 'SUPER_ADMIN') {
                 $sidebar = 'layouts.AdminSidebar';
+            }else{
+                $sidebar = 'layouts.sidebar';
             }
         }
 

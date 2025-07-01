@@ -56,4 +56,13 @@ class BookingController extends Controller
 
 
     }
+
+
+    public function repairOrder(){
+        $bookings = Booking::all();
+        
+        return view('admin.repairorder',compact('bookings'));
+
+
+    }
 }
