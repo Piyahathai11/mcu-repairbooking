@@ -7,6 +7,18 @@
     Carbon::setLocale('th');
 @endphp
 
+
+
+@if(session('success'))
+
+<script>
+
+window.onload= function(){
+    alert("{{session('success')}}");
+}
+
+</script>
+@endif
 @section('content')
 <div class="container mx-auto mt-4">
     <div class="col-12 col-md-10 col-lg-8">
@@ -48,7 +60,22 @@
                                         <img src="{{ asset($booking->image_path) }}" alt="รูปภาพ"
                                             style="max-width: 100px; height: auto;">
                                     </td>
-                                    <td>{{ $booking->status }}</td>
+                                    <td>
+                                  
+                                            <form method="POST" action="{{ route('updateStatus', ['id' => $booking->id]) }}">
+                                                @csrf
+                                                <select class="form-select" name="status" onchange="this.form.submit()">
+                                                    <option value="pending" {{ $booking->status === 'pending' ? 'selected' : '' }}>ยื่นคำร้อง</option>
+                                                    <option value="accepted" {{ $booking->status === 'accepted' ? 'selected' : '' }}>รับคำร้อง</option>
+                                                    <option value="in_progress" {{ $booking->status === 'in_progress' ? 'selected' : '' }}>กำลังดำเนินการ</option>
+                                                    <option value="done" {{ $booking->status === 'done' ? 'selected' : '' }}>ดำเนินการเสร็จ</option>
+                                                    <option value="cancelled" {{ $booking->status === 'cancelled' ? 'selected' : '' }}>ยกเลิกคำร้อง</option>
+                                                </select>
+                                            </form>
+                                      
+                                        
+
+                                    </td>
                                     <td>
                                         <a href="/update_form"><button class="btn btn-sm btn-primary">อัปเดต</button></a>
                                     </td>

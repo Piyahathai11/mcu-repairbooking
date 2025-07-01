@@ -23,6 +23,7 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
     Route::get('/dashboard', fn() => view('admin.dashboard'));
     Route::get('/adminsidebar', fn() => view('layouts.AdminSidebar'));
     Route::get('/repairorder', [BookingController::class, 'repairOrder']);
+    Route::post('/repairorder/{id}', [BookingController::class, 'UpdateStatus'])->name('updateStatus');
     Route::get('/update_form', fn() => view('admin.update_form'));
 });
 

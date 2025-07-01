@@ -65,4 +65,19 @@ class BookingController extends Controller
 
 
     }
+
+    public function UpdateStatus(Request $request,$id){
+
+        $status = $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $booking = Booking::find($id);
+        $booking->status = $request->input('status');
+        $booking->save();
+
+        return redirect()->back()->with('success','status changed');
+
+        
+    }
 }
