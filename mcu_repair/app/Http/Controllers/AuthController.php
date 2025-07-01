@@ -73,6 +73,10 @@ class AuthController extends Controller
         return redirect('/login')->with('success','Registration is success');
     }
 
+    public function userManagement(){
+        $users = USER::all();
+        return view('admin.user_manage',compact('users'));
+    }
 
 
 }

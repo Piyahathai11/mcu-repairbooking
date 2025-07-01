@@ -25,6 +25,7 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
     Route::get('/repairorder', [BookingController::class, 'repairOrder']);
     Route::post('/repairorder/{id}', [BookingController::class, 'UpdateStatus'])->name('updateStatus');
     Route::get('/update_form', fn() => view('admin.update_form'));
+    Route::get('/user_management', [AuthController::class, 'userManagement']);
 });
 
 // Routes for USER only
