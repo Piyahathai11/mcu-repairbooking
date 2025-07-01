@@ -78,5 +78,13 @@ class AuthController extends Controller
         return view('admin.user_manage',compact('users'));
     }
 
+    public function userDelete(Request $request, $id){
+
+        $user = USER::find($id);
+        $user->delete();
+
+        return redirect()->back()->with('success','user is removed');
+
+    }
 
 }

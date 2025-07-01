@@ -54,10 +54,12 @@
                       <td>{{$u->phone}}</td>
                       <td>7</td>
                       <td>
-                        <button class="btn btn-primary" >     
+                        <form method="POST" action="{{route('userDelete', ['id' => $u->id])}}">
+                            @csrf
+                            <button class="btn btn-primary" >     
                           <i class="fas fa-minus">
                             </i></button>
-                      
+                        </form>
                       
                       </td>
 
