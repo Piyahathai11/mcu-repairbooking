@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Public routes
 Route::get('/', function () {
-    return view('login');
+    return view('auth.login');
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

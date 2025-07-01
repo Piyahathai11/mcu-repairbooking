@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Enums\Role;
+use App\Enums\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,12 @@ class AuthController extends Controller
         
         $user = Auth::user();
         $role = is_object($user->role) ? $user->role->value : $user->role;
+        $status = is_object($user->status) ? $user->status->value : $user->status;
+        
+        if ($role === Role::USER->value && $status !== Status::APPROVED->value) {
+            Auth::logout();
+            return back()->withErrors(['login' => 'Your account is not approved yet.']);
+        }
 
         \Log::info('User Role:'.$role);
         if ($role === 'SUPER_ADMIN') {
