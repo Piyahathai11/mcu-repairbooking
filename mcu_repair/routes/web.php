@@ -27,6 +27,7 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
     Route::get('/update_form', fn() => view('admin.update_form'));
     Route::get('/user_management', [AuthController::class, 'userManagement']);
     Route::post('/user_management/{id}',[AuthController::class, 'userDelete'])->name('userDelete');
+    Route::post('/user_management',[AuthController::class, 'AddAdmin'])->name('AddAdmin');
 });
 
 // Routes for USER only

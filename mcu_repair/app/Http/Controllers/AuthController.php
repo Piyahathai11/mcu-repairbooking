@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Enums\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -85,6 +86,28 @@ class AuthController extends Controller
 
         return redirect()->back()->with('success','user is removed');
 
+    }
+    public function AddAdmin(Request $request){
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'password'=>'required',
+        ]);
+
+        $user = USER::create([
+            'username' => $request->username,
+            'fullName' => $request->fullName,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => $request->password,
+            'position' => $request->position,
+            'personnel' => $request->personnel,
+            'role'=> Role::ADMIN,
+        ]);
+
+        return redirect()->back()->with('success','admin registration succeeded');
+
+        
     }
 
 }
