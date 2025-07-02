@@ -57,29 +57,31 @@ window.onload = function (){
                 <input class="form-control mb-3" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple />
               </div>
             </div>
-
+            @foreach ($user_info as $u)
+                
+      
             <!-- Step 2 -->
             <div id="userInfo" class="d-none">
               <h3>ข้อมูลเพิ่มเติม</h3>
               <div class="mb-3">
                 <label class="form-label">ชื่อ นามสกุล</label>
-                <input type="text" class="form-control mb-3" name="fullName" />
+                <input type="text" class="form-control mb-3" name="fullName" value="{{$u->fullName}}" />
 
                 <label class="form-label">ตำแหน่ง</label>
-                <input type="text" class="form-control mb-3" name="position" required />
+                <input type="text" class="form-control mb-3" name="position"  value="{{$u->position}}"  />
 
                 <label class="form-label">บุคลากร</label>
-                <select class="form-select mb-3" name="personnel"  required>
+                <select class="form-select mb-3" name="personnel"  value="{{$u->personnel}}" >
                   <option value="">-- กรุณาเลือก --</option>
                   <option value="บุคลากรภายใน">บุคลากรภายใน</option>
                   <option value="บุคลากรภายนอก">บุคลากรภายนอก</option>
                 </select>
 
                 <label class="form-label">เบอร์ติดต่อ</label>
-                <input type="tel" class="form-control mb-3" name="phone" required />
+                <input type="tel" class="form-control mb-3" name="phone"  value="{{$u->phone}}"  />
               </div>
             </div>
-
+            @endforeach
             <!-- Navigation Buttons -->
             <div class="d-flex justify-content-between mt-3">
               <button type="button" id="prevButton" class="pinkbutton d-none">ย้อนกลับ</button>

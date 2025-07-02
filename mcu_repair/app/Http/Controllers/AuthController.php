@@ -74,7 +74,7 @@ class AuthController extends Controller
             'password' => $request->password,
             'position' => $request->position,
             'personnel' => $request->personnel,
-            'status'=> $request->status,
+            'status'=> Status::PENDING,
         ]);
 
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
@@ -10,15 +10,13 @@ class BookingController extends Controller
 {
 
     public function showForm(){
-        return view('user.booking');
+        $userId = Auth::id();
+        $user_info = USER::where('id',$userId)->get();
+        return view('user.booking',compact('user_info'));
     }
-
-
-
 
     public function create (Request $request){
         $imagePath = null;
-
 
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -44,7 +42,8 @@ class BookingController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success','already summited the data');
+        return redirect()->back()
+        ->with('success','already summited the data');
 
     }
 
@@ -56,6 +55,8 @@ class BookingController extends Controller
 
 
     }
+
+  
 
 
     public function repairOrder(){
