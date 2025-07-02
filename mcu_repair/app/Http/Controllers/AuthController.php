@@ -82,7 +82,7 @@ class AuthController extends Controller
     }
 
     public function userManagement(){
-        $users = USER::all();
+        $users = USER::whereIn('role',[ROLE::ADMIN->value,ROLE::USER->value])->get();
         return view('admin.user_manage',compact('users'));
     }
 
@@ -113,6 +113,26 @@ class AuthController extends Controller
         ]);
 
         return redirect()->back()->with('success','admin registration succeeded');
+
+        
+    }
+
+
+    public function UpdateUserStatus(Request $request,$id){
+
+        $status = $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $users = USER::find($id);
+        $users->status = $request->input('status');
+        $users->save();
+
+        if($users->status === "reject"){
+            $users->delete();
+        }
+
+        return redirect()->back()->with('success','status changed');
 
         
     }

@@ -110,7 +110,19 @@
                 <td>{{ $u->personnel }}</td>
                 <td>{{ $u->email }}</td>
                 <td>{{ $u->phone }}</td>
-                <td>{{ $u->status ?? '-' }}</td>
+                <td> <form method="POST" action="{{ route('UpdateUserStatus', ['id' => $u->id]) }}" >
+                  @csrf
+                  <select class="form-select" name="status" onchange="this.form.submit()">
+                    <option value="pending" {{ $u->status->value === 'pending' ? 'selected' : '' }}>ยื่นคำร้อง</option>
+                    <option value="approved" {{ $u->status->value === 'approved' ? 'selected' : '' }}>รับคำร้อง</option>
+                    <option value="reject" {{ $u->status->value === 'reject' ? 'selected' : '' }}>ยกเลิกคำร้อง</option>
+                    
+                </select>
+                
+
+                  </form>
+                
+                </td>
                 <td>
                   <form method="POST" action="{{ route('userDelete', ['id' => $u->id]) }}">
                     @csrf

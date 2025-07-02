@@ -26,7 +26,8 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
     Route::post('/repairorder/{id}', [BookingController::class, 'UpdateStatus'])->name('updateStatus');
     Route::get('/update_form', fn() => view('admin.update_form'));
     Route::get('/user_management', [AuthController::class, 'userManagement']);
-    Route::post('/user_management/{id}',[AuthController::class, 'userDelete'])->name('userDelete');
+    Route::post('/user_management/update/{id}',[AuthController::class, 'UpdateUserStatus'])->name('UpdateUserStatus');
+    Route::post('/user_management/delete/{id}',[AuthController::class, 'userDelete'])->name('userDelete');
     Route::post('/user_management',[AuthController::class, 'AddAdmin'])->name('AddAdmin');
 });
 
