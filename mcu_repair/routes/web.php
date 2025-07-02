@@ -31,7 +31,9 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
     Route::post('/user_management/update/{id}',[AuthController::class, 'UpdateUserStatus'])->name('UpdateUserStatus');
     Route::post('/user_management/delete/{id}',[AuthController::class, 'userDelete'])->name('userDelete');
     Route::post('/user_management',[AuthController::class, 'AddAdmin'])->name('AddAdmin');
-    Route::get('/dashboard',[DashboardController::class, 'showDashboard']);
+    Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+
+
 
  
 });
