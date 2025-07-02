@@ -35,7 +35,6 @@
        <li> <a href="/dashboard" class="nav-link text-start">รายงาน</a></li>
        <li> <a href="/repairorder" class="nav-link text-start">รายการแจ้งซ่อม</a></li>
        <li><a href="/user_management" class="nav-link text-start">จัดการสมาชิก</a></li>
-       <li><a href="/setting" class="nav-link text-start">แจ้งลงทะเบียน</a></li>
        <li><a href="/logout" class="nav-link text-start">โปรไฟล์</a></li>
 
 </ul>
@@ -50,7 +49,7 @@
     <li class="nav-item"><a href="/dashboard" class="nav-link">รายงาน</a></li>
     <li class="nav-item"><a href="/repairorder" class="nav-link">รายการแจ้งซ่อม</a></li>
     <li class="nav-item"><a href="/user_management" class="nav-link">จัดการสมาชิก</a></li>
-    <li class="nav-item"><a href="/myrepair"  class="nav-link">แจ้งลงทะเบียน</a></li>
+
 
 
   </ul>
