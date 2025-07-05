@@ -124,6 +124,13 @@
                 
                 </td>
                 <td>
+                  <form method="POST">
+                    <button class="pinkbutton">
+                      <i class="bi bi-pencil-square"></i>
+                    </button>
+
+
+                  </form>
                   <form method="POST" action="{{ route('userDelete', ['id' => $u->id]) }}">
                     @csrf
                     <button class="btn btn-danger btn-sm">
@@ -136,9 +143,63 @@
             </tbody>
           </table>
         </div>
-
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">รายการแจ้งซ่อม</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table class="table table-bordered table-striped w-100">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>เลขที่</th>
+                                <th>ชื่อ-นามสกุล</th>
+                                <th>เบอร์ติดต่อ</th>
+                                <th>ประเภท</th>
+                                <th>รายละเอียดปัญหา</th>
+                                <th>สถานที่เกิดปัญหา</th>
+                                <th>รูปภาพ</th>
+                                <th>สถานะ</th>
+                                <th>เพิ่มเติม</th>
+                                <th>แก้ไขล่าสุด</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $u)
+                                <tr>
+                                    <td>{{ $u->id }}</td>
+                                    <td>{{ $u->fullName }}</td>
+                                    <td>{{ $u->phone }}</td>
+                                    <td>{{ $u->position }}</td>
+                                    <td>{{ $u->personnel }}</td>
+                                    <td>{{ $u->email }}</td>
+                                    <td>
+                                        <img src="{{ asset($u->image_path) }}" alt="รูปภาพ" style="max-width: 100px; height: auto;">
+                                    </td>
+                                    <td>
+                                       
+                                    </td>
+                                    <td>
+                                       
+                                    </td>
+                                    <td>
+                                       
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+
+
   </div>
 </div>
 

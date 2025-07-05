@@ -107,15 +107,40 @@ class AuthController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => $request->password,
-            'position' => $request->position,
+            'position' => Hash::make($request->position),
             'personnel' => $request->personnel,
             'role'=> Role::ADMIN,
         ]);
 
         return redirect()->back()->with('success','admin registration succeeded');
-
-        
     }
+        
+    public function UpdateUser(Request $request,$id){
+        $user = User::find($id);
+        
+        $request->validate([
+            'fullName' => 'required',
+            'username' => 'required',
+            'email' => 'required'
+        ]);
+
+        $user->fullName = $request->input('fullName');
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        $user->password= $request->input('password');
+        $user->position = $request->input('position');
+        $user->personnel = $request->input('personnel');
+        $user->phone = $request->input('phone');
+   
+        $user->save();
+
+        return redirect()->back()->with('success','user infomation changed');
+    
+
+
+
+    }
+    
 
 
     public function UpdateUserStatus(Request $request,$id){
@@ -132,7 +157,9 @@ class AuthController extends Controller
             $users->delete();
         }
 
-        return redirect()->back()->with('success','status changed');
+        return redirect()->back()
+        ->with('success','status changed')
+        ->with(compact('users'));
 
         
     }
