@@ -25,8 +25,6 @@ class BookingController extends Controller
             $imagePath = 'uploads/images/'. $imageName;
 
         }
-    
-
 
         Booking::create([
             'user_id'=> Auth::id(),
