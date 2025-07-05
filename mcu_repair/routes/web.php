@@ -32,6 +32,7 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
     Route::post('/user_management/delete/{id}',[AuthController::class, 'userDelete'])->name('userDelete');
     Route::post('/user_management',[AuthController::class, 'AddAdmin'])->name('AddAdmin');
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+    
 
 
 
@@ -40,11 +41,7 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
 
 // Routes for USER only
 Route::middleware(['auth', 'web', 'role:USER'])->group(function () {
-    Route::get('/home', function () {
-        Log::info(' Route /home hit.');
-        Log::info(' User:', ['user' => Auth::user()]);
-        return view('user.home');
-    });
+    Route::get('/home', [BookingController::class, 'bookingHistory']);
     Route::get('/booking', [BookingController::class, 'showForm'])->name('booking');
     Route::post('/booking', [BookingController::class, 'create'])->middleware('auth')->name('booking.form');
     Route::get('/myrepair', [BookingController::class, 'myRepair'])->name('myrepair');

@@ -79,4 +79,13 @@ class BookingController extends Controller
 
         
     }
+
+    public function bookingHistory(){
+        $user = Auth::id();
+        $booking= Booking::where('user_id',$user)
+                    ->where('status','done')
+                    ->get();
+
+       return view('user.home',compact('booking'));
+    }
 }
