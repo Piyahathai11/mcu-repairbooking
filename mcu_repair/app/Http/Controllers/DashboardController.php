@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,98 +7,62 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
-{ 
+{
     public function showDashboard(Request $request)
     {
         $filterCategory = $request->query('category');
         $filterStatus = $request->query('status');
         $filterYear = $request->query('year');
         $filterMonth = $request->query('month');
-    
+
+        // Base query for bookings
         $query = Booking::query();
-    
+
+        if ($filterYear && $filterMonth) {
+            $query->whereYear('created_at', $filterYear)
+                  ->whereMonth('created_at', $filterMonth);
+        }
+
         if ($filterCategory) {
             $query->where('category', $filterCategory);
         }
-    
+
         if ($filterStatus) {
             $query->where('status', $filterStatus);
         }
-    
+
         $bookings = $query->get();
-    
-        if($filterYear&&$filterMonth){
-      //in case of empty
 
-            $filterdBooking = Booking::whereYear('created_at',$filterYear)
-                            ->whereMonth('created_at', $filterMonth)
-                            ->get();
-             if($filterdBooking->isEmpty()){
-                $categoryCounts = $filterdBooking->collect();
-                $statusCounts = $filterdBooking->collect();
+        // Category counts
+        $categoryCounts = $bookings->groupBy('category')->map->count();
 
-             }else{
-                $categoryCounts = $filterdBooking->groupBy('category')->map->count();
-                $statusCounts = $filterdBooking->groupBy('status')->map->count();
-             }
-    
-        } else {
-        
-            $categoryCounts = Booking::select('category', DB::raw('COUNT(*) as total'))
-                ->groupBy('category')
-                ->pluck('total', 'category');
-        
-            $statusCounts = Booking::select('status', DB::raw('COUNT(*) as total'))
-                ->groupBy('status')
-                ->pluck('total', 'status');
-        }
+        // Status counts
+        $statusCounts = $bookings->groupBy('status')->map->count();
 
-
-        $categoryChartQuery = Booking::query();
-        if ($filterCategory) {
-            $categoryChartQuery->where('category', $filterCategory);
-        }
-        if ($filterYear && $filterMonth) {
-            $categoryChartQuery->whereYear('created_at', $filterYear)
-                               ->whereMonth('created_at', $filterMonth);
-        }
-        $categoryChart = $categoryChartQuery
-            ->select(
-                DB::raw("EXTRACT(YEAR from created_at) as year"),
-                DB::raw("EXTRACT(MONTH from created_at) as month"),
+        // For category chart (group by month + year)
+        $categoryChart = Booking::select(
+                DB::raw("EXTRACT(YEAR FROM created_at) as year"),
+                DB::raw("EXTRACT(MONTH FROM created_at) as month"),
+                'category',
                 DB::raw("COUNT(*) as count")
             )
-            ->groupBy('category')
+            ->when($filterYear, fn($q) => $q->whereYear('created_at', $filterYear))
+            ->when($filterMonth, fn($q) => $q->whereMonth('created_at', $filterMonth))
+            ->groupBy('category', DB::raw('YEAR(created_at), MONTH(created_at)'))
             ->get();
-    
-  
-        $statusChartQuery = Booking::query();
-        if ($filterStatus) {
-            $statusChartQuery->where('status', $filterStatus);
-        }
-        if ($filterYear && $filterMonth) {
-            $statusChartQuery->whereYear('created_at', $filterYear)
-                             ->whereMonth('created_at', $filterMonth);
-        }
 
-
-        $statusChart = $statusChartQuery
-            ->select(
-                DB::raw("EXTRACT(YEAR from created_at) as year"),
-                DB::raw("EXTRACT(MONTH from created_at) as month"),
+        // For status chart (group by month + year)
+        $statusChart = Booking::select(
+                DB::raw("EXTRACT(YEAR FROM created_at) as year"),
+                DB::raw("EXTRACT(MONTH FROM created_at) as month"),
+                'status',
                 DB::raw("COUNT(*) as count")
             )
-            ->groupBy('status')
+            ->when($filterYear, fn($q) => $q->whereYear('created_at', $filterYear))
+            ->when($filterMonth, fn($q) => $q->whereMonth('created_at', $filterMonth))
+            ->groupBy('status', DB::raw('YEAR(created_at), MONTH(created_at)'))
             ->get();
-    
 
-        if ($request->ajax()) {
-            return response()->json([
-                'categoryChart' => $categoryChart,
-                'statusChart' => $statusChart,
-            ]);
-        }
-    
         return view('admin.dashboard', compact(
             'bookings',
             'categoryCounts',
@@ -108,10 +71,8 @@ class DashboardController extends Controller
             'filterStatus',
             'categoryChart',
             'statusChart',
+            'filterYear',
+            'filterMonth'
         ));
     }
-    
-
-
-
 }

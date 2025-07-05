@@ -259,28 +259,13 @@
     });
 
     function fetchChartData() {
-        fetch(`{{ route('dashboard') }}?year=${selectedYear}&month=${selectedMonth}&category=${selectedCategory}&status=${selectedStatus}`, {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-        })
-        .then(res => res.json())
-        .then(data => {
-            const catLabels = data.categoryChart.map(e => `${e.month}/${e.year}`);
-            const catCounts = data.categoryChart.map(e => e.count);
+    const baseUrl = `{{ route('dashboard') }}`;
+    const url = new URL(baseUrl, window.location.origin);
+    if (selectedYear) url.searchParams.append("year", selectedYear);
+    if (selectedMonth) url.searchParams.append("month", selectedMonth);
+    window.location.href = url.toString(); 
+}
 
-            const staLabels = data.statusChart.map(e => `${e.month}/${e.year}`);
-            const staCounts = data.statusChart.map(e => e.count);
-
-            categoryChart.data.labels = catLabels;
-            categoryChart.data.datasets[0].data = catCounts;
-            categoryChart.update();
-
-            statusChart.data.labels = staLabels;
-            statusChart.data.datasets[0].data = staCounts;
-            statusChart.update();
-
-            $monthContent.classList.add('d-none');
-        });
-    }
 </script>
 
 @endsection
