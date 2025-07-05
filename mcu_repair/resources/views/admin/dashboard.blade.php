@@ -11,8 +11,7 @@
 
 <canvas id="bookingChart" width="400" height="200"></canvas>
 
-{{-- Optional Chart --}}
-{{-- 
+
 <script>
     const ctx = document.getElementById('bookingChart').getContext('2d');
     const bookingChart = new Chart(ctx, {
@@ -34,7 +33,7 @@
         }
     });
 </script>
---}}
+
 
 <div class="row justify-content-around flex-wrap">
     <h3>แบ่งงานตามประเภท</h3>

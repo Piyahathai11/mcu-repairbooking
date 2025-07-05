@@ -11,9 +11,8 @@ class DashboardController extends Controller
 {
  
     
-    
-        public function showDashboard(Request $request)
-{
+ public function showDashboard(Request $request)
+  {
     $filterCategory = $request->query('category');
     $filterStatus = $request->query('status');
 
@@ -64,32 +63,7 @@ class DashboardController extends Controller
     
 
 
-public function fetchByCategory($category){
-    $bookings = Booking::where('category',$category)->get();
-    $categoryCounts = Booking::select('category', DB::raw('COUNT(*) as total'))
-    ->groupBy('category')
-    ->pluck('total', 'category');
 
-    $statusCounts = Booking::select('status', DB::raw('COUNT(*) as total'))
-    ->groupBy('status')
-    ->pluck('total', 'status');
-
-    return view('admin.dashboard',compact('bookings','categoryCounts','statusCounts'));
-
-}
-public function fetchByStatus($status){
-    $bookings = Booking::where('status',$status)->get();
-    $statusCounts = Booking::select('status', DB::raw('COUNT(*) as total'))
-    ->groupBy('status')
-    ->pluck('total', 'status');
-
-    $categoryCounts = Booking::select('category', DB::raw('COUNT(*) as total'))
-    ->groupBy('category')
-    ->pluck('total', 'category');
-    
-
-    return view('admin.dashboard',compact('bookings','statusCounts','categoryCounts'));
-}
 
 
 
