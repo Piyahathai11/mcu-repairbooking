@@ -1,3 +1,8 @@
+@php
+ $role = is_object(Auth::user()->role) ?  Auth::user()->role->value : Auth::user()->role;
+
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +39,9 @@
 
        <li> <a href="/dashboard" class="nav-link text-start">รายงาน</a></li>
        <li> <a href="/repairorder" class="nav-link text-start">รายการแจ้งซ่อม</a></li>
+       @if($role === "SUPER_ADMIN")
        <li><a href="/user_management" class="nav-link text-start">จัดการสมาชิก</a></li>
+       @endif
        <li><a href="/logout" class="nav-link text-start">โปรไฟล์</a></li>
 
 </ul>
@@ -48,8 +55,9 @@
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item"><a href="/dashboard" class="nav-link">รายงาน</a></li>
     <li class="nav-item"><a href="/repairorder" class="nav-link">รายการแจ้งซ่อม</a></li>
+    @if($role === "SUPER_ADMIN")
     <li class="nav-item"><a href="/user_management" class="nav-link">จัดการสมาชิก</a></li>
-
+   @endif
 
 
   </ul>

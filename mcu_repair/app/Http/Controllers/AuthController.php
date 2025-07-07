@@ -35,12 +35,11 @@ class AuthController extends Controller
             Auth::logout();
             return back()->withErrors(['login' => 'Your account is not approved yet.']);
         }
+        
 
         \Log::info('User Role:'.$role);
-        if ($role === 'SUPER_ADMIN') {
+        if ($role === 'SUPER_ADMIN'|| $role === 'ADMIN') {
             return redirect('/dashboard');
-        } elseif ($role === 'ADMIN') {
-            return redirect('/settings');
         } elseif ($role === 'USER') {
             return redirect('/home');
         } else {

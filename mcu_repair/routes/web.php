@@ -21,24 +21,27 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/setting', [SettingController::class, 'setting'])->name('setting');
 
 // Routes for SUPER_ADMIN only
-Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
-    // Route::get('/dashboard', fn() => view('admin.dashboard'));
+Route::middleware(['web','auth', 'role:SUPER_ADMIN,ADMIN'])->group(function () {
     Route::get('/adminsidebar', fn() => view('layouts.AdminSidebar'));
     Route::get('/repairorder', [BookingController::class, 'repairOrder']);
     Route::post('/repairorder/{id}', [BookingController::class, 'UpdateStatus'])->name('updateStatus');
     Route::get('/update_form', fn() => view('admin.update_form'));
-    Route::get('/user_management', [AuthController::class, 'userManagement']);
-    Route::post('/user_management/update/{id}',[AuthController::class, 'UpdateUserStatus'])->name('UpdateUserStatus');
-    Route::post('/user_management/delete/{id}',[AuthController::class, 'userDelete'])->name('userDelete');
-    Route::post('/user_management',[AuthController::class, 'AddAdmin'])->name('AddAdmin');
-    // Route::get('/user_management/fetchUserData/{id}',[AuthController::class, 'UserInfo'])->name('UserInfo');
-    Route::post('/user_management/updateUser/{id}',[AuthController::class,'UpdateUser'])->name('UpdateUser');
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
     
 
 
 
  
+});
+
+Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
+
+    Route::get('/user_management', [AuthController::class, 'userManagement']);
+    Route::post('/user_management/update/{id}',[AuthController::class, 'UpdateUserStatus'])->name('UpdateUserStatus');
+    Route::post('/user_management/delete/{id}',[AuthController::class, 'userDelete'])->name('userDelete');
+    Route::post('/user_management',[AuthController::class, 'AddAdmin'])->name('AddAdmin');
+    Route::post('/user_management/updateUser/{id}',[AuthController::class,'UpdateUser'])->name('UpdateUser');
+
 });
 
 // Routes for USER only
