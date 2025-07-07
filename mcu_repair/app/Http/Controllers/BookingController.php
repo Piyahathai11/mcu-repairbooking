@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\BookingUpdate;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
@@ -54,9 +55,6 @@ class BookingController extends Controller
 
     }
 
-  
-
-
     public function repairOrder(){
         $bookings = Booking::all();
         
@@ -87,5 +85,30 @@ class BookingController extends Controller
                     ->get();
 
        return view('user.home',compact('booking'));
+    }
+
+
+    // updateForm
+
+    public function updateNote(Request $request, $id){
+
+        $booking = Booking::find($id);
+        
+        $request->validate([
+            'estimated_finish_date' => 'required|date',
+            'updated_note' => 'required|string',
+            'total_cost' => 'numeric'
+        ]);
+
+        BookingUpdate::create([
+            'booking_id' => $id,
+            'estimated_finish_date' => $request->input('estimated_finish_date'),
+            'updated_note' => $request->input('updated_note'),
+            'total_cost' => $request->input('total_cost'),
+        ]);
+
+
+        return redirect()->back()->with('success','update successfully');
+
     }
 }

@@ -17,12 +17,12 @@
     <h2>รายงาน</h2>
 
     <!-- Year/Month Picker -->
-    <button class="btn btn-primary my-3" id="monthButton">เลือกเดือน/ปี</button>
+    <button class="pinkbutton my-3" id="monthButton">เลือกเดือน/ปี</button>
     <div class="monthPicker d-none border p-3 rounded" id="monthPicker">
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <button class="btn btn-outline-secondary" id="prevYearRange"><<</button>
+            <button class="btn btn-outline" id="prevYearRange"><<</button>
             <span class="fw-bold currentYearRange"></span>
-            <button class="btn btn-outline-secondary" id="nextYearRange">>></button>
+            <button class="btn btn-outline" id="nextYearRange">>></button>
         </div>
         <div class="d-flex flex-wrap justify-content-center" id="yearGrid"></div>
         <div class="d-flex flex-wrap justify-content-center mt-3" id="monthGrid" style="display:none;"></div>
@@ -32,7 +32,7 @@
 
         <div class="col-md-6">
             <h4>แผนภูมิตามประเภท</h4>
-            <canvas id="categoryChart"></canvas>
+            <canvas id="categoryChart" style="max-width: 200px"></canvas>
             <table class="table table-bordered table-sm mt-3">
                 <thead class="thead-dark">
                     <tr>
@@ -60,9 +60,9 @@
         </div>
 
         <!-- Status Chart & Table -->
-        <div class="col-md-6">
+        <div class="col-md-6 ">
             <h4>แผนภูมิตามสถานะ</h4>
-            <canvas id="statusChart"></canvas>
+            <canvas id="statusChart" style="max-width: 200px"></canvas>
             <table class="table table-bordered table-sm mt-3">
                 <thead class="thead-dark">
                     <tr>
@@ -202,7 +202,7 @@
 
         for (let i = currentStartYear; i < currentStartYear + 10; i++) {
             const btn = document.createElement('button');
-            btn.className = 'btn btn-outline-primary m-1';
+            btn.className = 'btn btn-outline-secondary m-1';
             btn.textContent = i;
             btn.onclick = () => {
                 selectedYear = i;
@@ -221,7 +221,7 @@
 
         months.forEach((month, index) => {
             const btn = document.createElement('button');
-            btn.className = 'btn btn-outline-success m-1';
+            btn.className = 'btn btn-outline-secondary m-1';
             btn.textContent = month;
             btn.onclick = () => {
                 selectedMonth = index + 1;

@@ -10,7 +10,7 @@
 @section('content')
 
 <div class="container mt-4">
-  <div class="col-12 col-md-10 col-lg-8 mx-auto">
+  <div class="col-12  mx-auto">
     <h1 class="text-xl font-bold mb-4">จัดการสมาชิก</h1>
 
     <div class="card p-4 rounded bg-white">
@@ -144,7 +144,7 @@
           </table>
         </div>
 
-
+        {{-- EditModal --}}
 
       @foreach ($users as $user)
           

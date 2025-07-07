@@ -20,20 +20,19 @@ Route::post('register',[AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/setting', [SettingController::class, 'setting'])->name('setting');
 
-// Routes for SUPER_ADMIN only
+
+// Routes for SUPER_ADMIN & ADMIN
 Route::middleware(['web','auth', 'role:SUPER_ADMIN,ADMIN'])->group(function () {
     Route::get('/adminsidebar', fn() => view('layouts.AdminSidebar'));
     Route::get('/repairorder', [BookingController::class, 'repairOrder']);
     Route::post('/repairorder/{id}', [BookingController::class, 'UpdateStatus'])->name('updateStatus');
-    Route::get('/update_form', fn() => view('admin.update_form'));
+    Route::get('/update_form/{id}', fn() => view('admin.update_form'))->name('showForm');
+    Route::post('/update_form/update/{id}',[BookingController::class, 'updateNote'])->name('updateNote');
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
-    
 
-
-
- 
 });
 
+//SUPER_ADMIN only
 Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
 
     Route::get('/user_management', [AuthController::class, 'userManagement']);

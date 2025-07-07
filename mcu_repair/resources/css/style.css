@@ -16,6 +16,18 @@ a{
     font-size: 1rem;
     color: white;
   }
+
+  .btn-outline-secondary {
+    color: #e844dd;             
+    border: 1px solid #bb8ebb;    
+    background-color: transparent;
+  }
+  
+  .btn-outline-secondary:hover {
+    color: white;              
+    background-color: #c91bb7;    
+    border-color: #c91bb7;       
+  }
   
   .custom-select {
     border: none;
@@ -157,7 +169,7 @@ a{
 
 .monthPicker-body-month:hover {
     text-decoration: none;
-    color: #008080;
+    color: pink;
     background: #fff;
     box-shadow: 0 1px 5px rgba(0, 0, 0, .34);
 }

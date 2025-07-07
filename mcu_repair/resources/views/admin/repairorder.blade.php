@@ -21,7 +21,7 @@ window.onload= function(){
 @endif
 @section('content')
 <div class="container mx-auto mt-4">
-    <div class="col-12 col-md-10 col-lg-8">
+    <div class="col-12">
         <h1 class="text-xl font-bold mb-4">รายการแจ้งซ่อม</h1>
         <div class="card p-4 w-100 rounded bg-white">
             <div class="card-body">
@@ -77,7 +77,9 @@ window.onload= function(){
 
                                     </td>
                                     <td>
-                                        <a href="/update_form"><button class="btn btn-sm btn-primary">อัปเดต</button></a>
+                                      
+                                           <a href="{{route('showForm',['id'=> $booking->id])}}"><button class="btn btn-sm btn-primary">อัปเดต</button></a>
+                                        
                                     </td>
                                     <td>
                                         {{ Carbon::parse($booking->updated_at)->translatedFormat('j F Y H:i') }}

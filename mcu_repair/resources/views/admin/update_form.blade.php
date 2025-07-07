@@ -9,13 +9,14 @@
       <div class="card  p-4">
         <h2 class="mb-4">อัปเดตเพิ่มเติม</h2>
  
-        <form >
+        <form method="POST" action="{{route('updateNote')}}">
+          @csrf
           <div class="form-group mb-3">
             <label>วันที่เสร็จ/คาดว่าจะเสร็จ</label>
             <input
               type="date"
               class="form-control"
-              value={finishedDate}
+              name="estimated_finish_date"
             />
           </div>
           <div class="form-group mb-3">
@@ -23,7 +24,7 @@
             <textarea
               class="form-control"
               rows={3}
-              value={updateNote}
+              name="updated_note"
             ></textarea>
           </div>
           <div class="form-group mb-3">
@@ -31,7 +32,7 @@
             <input
               type="number"
               class="form-control"
-              value={totalPayment}
+              name="total_cost"
             />
           </div>
           <button type="submit" class="pinkbutton">

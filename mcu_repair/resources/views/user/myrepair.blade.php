@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="container mx-auto mt-4">
-    <div class="col-12 col-md-10 col-lg-8">
+    <div class="col-12 ">
         <h1 class="text-xl font-bold mb-4">การแจ้งซ่อมของฉัน</h1>
         <div class="card p-4 w-100 rounded bg-white">
             <div class="card-body">
@@ -50,7 +50,7 @@
                                     </td>
                                     <td>{{ $booking->status }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-primary">view</button>
+                                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#UpdatedModal">view</button>
                                     </td>
                                     <td>
                                         {{ Carbon::parse($booking->updated_at)->translatedFormat('j F Y H:i') }}
@@ -60,6 +60,68 @@
                         </tbody>
                     </table>
                 </div>
+
+
+
+                {{-- Modal --}}
+                <div class="modal fade" id="UpdatedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title">รายการแจ้งซ่อม</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body table-responsive">
+                              <table class="table table-bordered table-striped w-100">
+                                  <thead class="thead-dark">
+                                      <tr>
+                                          <th>เลขที่</th>
+                                          <th>ชื่อ-นามสกุล</th>
+                                          <th>เบอร์ติดต่อ</th>
+                                          <th>ประเภท</th>
+                                          <th>รายละเอียดปัญหา</th>
+                                          <th>สถานที่เกิดปัญหา</th>
+                                          <th>รูปภาพ</th>
+                                          <th>สถานะ</th>
+                                          <th>เพิ่มเติม</th>
+                                          <th>แก้ไขล่าสุด</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      {{-- @foreach ($bookings as $booking) --}}
+                                          <tr>
+                                              {{-- <td>{{ $booking->id }}</td>
+                                              <td>{{ $booking->fullName }}</td>
+                                              <td>{{ $booking->phone }}</td>
+                                              <td>{{ $booking->category }}</td>
+                                              <td>{{ $booking->detail }}</td>
+                                              <td>{{ $booking->place }}</td> --}}
+                                              {{-- <td>
+                                                  <img src="{{ asset($booking->image_path) }}" alt="รูปภาพ" style="max-width: 100px; height: auto;">
+                                              </td> --}}
+                                              {{-- <td>
+                                                  <form method="POST" action="{{ route('updateStatus', ['id' => $booking->id]) }}">
+                                                      @csrf
+                                                      <select class="form-select" name="status" onchange="this.form.submit()">
+                                                          <option value="pending" {{ $booking->status === 'pending' ? 'selected' : '' }}>ยื่นคำร้อง</option>
+                                                          <option value="accepted" {{ $booking->status === 'accepted' ? 'selected' : '' }}>รับคำร้อง</option>
+                                                          <option value="in_progress" {{ $booking->status === 'in_progress' ? 'selected' : '' }}>กำลังดำเนินการ</option>
+                                                          <option value="done" {{ $booking->status === 'done' ? 'selected' : '' }}>ดำเนินการเสร็จ</option>
+                                                          <option value="cancelled" {{ $booking->status === 'cancelled' ? 'selected' : '' }}>ยกเลิกคำร้อง</option>
+                                                      </select>
+                                                  </form>
+                                              </td> --}}
+                                              <td>
+                                                  <a href="/update_form"><button class="btn btn-sm btn-primary">อัปเดต</button></a>
+                                              </td>
+                                              {{-- <td>
+                                                  {{ Carbon::parse($booking->updated_at)->translatedFormat('j F Y H:i') }}
+                                              </td> --}}
+                                          </tr>
+                                      {{-- @endforeach --}}
+                                  </tbody>
+                              </table>
+
 
             </div>
         </div>
