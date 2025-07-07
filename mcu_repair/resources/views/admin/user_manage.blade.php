@@ -16,7 +16,7 @@
     <div class="card p-4 rounded bg-white">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="mb-0">Admin Users</h5>
+          <h5 class="mb-0">สมาชิกทั้งหมด</h5>
           <div class="d-flex">
             <input type="text" class="form-control me-2" id="searchInput" />
             <button class="btn btn-primary" id="addForm" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -124,13 +124,13 @@
                 
                 </td>
                 <td>
-                  <form method="POST">
-                    <button class="pinkbutton">
+
+                    <button type="button"class="pinkbutton" data-bs-toggle="modal" data-bs-target="#UserEditModal">
                       <i class="bi bi-pencil-square"></i>
                     </button>
 
 
-                  </form>
+   
                   <form method="POST" action="{{ route('userDelete', ['id' => $u->id]) }}">
                     @csrf
                     <button class="btn btn-danger btn-sm">
@@ -143,61 +143,99 @@
             </tbody>
           </table>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+      @foreach ($users as $user)
+          
+
+        <div class="modal fade" id="UserEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">รายการแจ้งซ่อม</h5>
+                    <h5 class="modal-title">แก้ไขข้้อมูลสมาชิก</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body table-responsive">
-                    <table class="table table-bordered table-striped w-100">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>เลขที่</th>
-                                <th>ชื่อ-นามสกุล</th>
-                                <th>เบอร์ติดต่อ</th>
-                                <th>ประเภท</th>
-                                <th>รายละเอียดปัญหา</th>
-                                <th>สถานที่เกิดปัญหา</th>
-                                <th>รูปภาพ</th>
-                                <th>สถานะ</th>
-                                <th>เพิ่มเติม</th>
-                                <th>แก้ไขล่าสุด</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $u)
-                                <tr>
-                                    <td>{{ $u->id }}</td>
-                                    <td>{{ $u->fullName }}</td>
-                                    <td>{{ $u->phone }}</td>
-                                    <td>{{ $u->position }}</td>
-                                    <td>{{ $u->personnel }}</td>
-                                    <td>{{ $u->email }}</td>
-                                    <td>
-                                        <img src="{{ asset($u->image_path) }}" alt="รูปภาพ" style="max-width: 100px; height: auto;">
-                                    </td>
-                                    <td>
-                                       
-                                    </td>
-                                    <td>
-                                       
-                                    </td>
-                                    <td>
-                                       
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+             
+            <form method="POST" action="{{route('UpdateUser',['id'=> $user->id])}}">
+              
+              @csrf
+                    
+                <label class="form-label">user name</label>
+                <input
+                type="text"
+                class="form-control mb-3"
+                placeholder={{$user->username}}
+                value={{$user->username}}
+                required
+                />
+                <label class="form-label">ชื่อ นามสกุล</label>
+                <input
+                type="text"
+                class="form-control mb-3"
+                placeholder={{$user->fullName}} 
+                value={{$user->fullName}}
+                required
+                />
+
+                <label class="form-label">ตำแหน่ง</label>
+                <input
+                type="text"
+                class="form-control mb-3"
+                placeholder={{$user->position}} 
+                value={{$user->position}}
+                required
+                />
+
+                <label class="form-label">บุคลากร</label>
+                <select
+                class="form-select mb-3"
+                placeholder={{$user->personnel}}
+                value={{$user->personnel}}
+                required
+                >
+                <option value="">-- กรุณาเลือก --</option>
+                <option value="บุคลากรภายใน">บุคลากรภายใน</option>
+                <option value="บุคลากรภายนอก">บุคลากรภายนอก</option>
+                </select>
+
+                <label class="form-label">เบอร์ติดต่อ</label>
+                <input
+                type="tel"
+                class="form-control mb-3"
+                placeholder={{$user->phone}}
+                value={{$user->phone}}
+                required
+                />
+
+                <label class="form-label">รหัสผ่าน</label>
+                <div class="input-group mb-3">
+                <input
+                    type="password"
+                    class="form-control">
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                >
+                    <i class="bi bi-eye-slash-fill"></i> : <i class="bi bi-eye"></i>
+                </button>
+                </div>
+     
+                <form method="POST" action="{{route('UpdateUser',['id'=>$user->id])}}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary w-100">
+                    บันทึกข้อมูล
+                    </button>
+                </form>
+            </form>
                 </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+@endforeach
 
 
   </div>

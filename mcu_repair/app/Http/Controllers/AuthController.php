@@ -85,6 +85,10 @@ class AuthController extends Controller
         $users = USER::whereIn('role',[ROLE::ADMIN->value,ROLE::USER->value])->get();
         return view('admin.user_manage',compact('users'));
     }
+    // public function UserInfo(Request $request,$id){
+    //     $user = USER::find($id);   
+    //     return view('admin.user_manage', compact('user'));
+    // }
 
     public function userDelete(Request $request, $id){
 
@@ -114,12 +118,13 @@ class AuthController extends Controller
 
         return redirect()->back()->with('success','admin registration succeeded');
     }
+
         
     public function UpdateUser(Request $request,$id){
         $user = User::find($id);
         
         $request->validate([
-            'fullName' => 'required',
+            'fullName' => 'required|string',
             'username' => 'required',
             'email' => 'required'
         ]);
@@ -134,7 +139,9 @@ class AuthController extends Controller
    
         $user->save();
 
-        return redirect()->back()->with('success','user infomation changed');
+        return redirect()->back()
+        ->with('success','user infomation changed')
+        ->with(compact('user'));
     
 
 
