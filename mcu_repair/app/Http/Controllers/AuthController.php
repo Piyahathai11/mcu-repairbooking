@@ -85,10 +85,6 @@ class AuthController extends Controller
         $users = USER::whereIn('role',[ROLE::ADMIN->value,ROLE::USER->value])->get();
         return view('admin.user_manage',compact('users'));
     }
-    // public function UserInfo(Request $request,$id){
-    //     $user = USER::find($id);   
-    //     return view('admin.user_manage', compact('user'));
-    // }
 
     public function userDelete(Request $request, $id){
 
@@ -111,7 +107,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => $request->password,
-            'position' => Hash::make($request->position),
+            'position' => $request->position,
             'personnel' => $request->personnel,
             'role'=> Role::ADMIN,
         ]);
