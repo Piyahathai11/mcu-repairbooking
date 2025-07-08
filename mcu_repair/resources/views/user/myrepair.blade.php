@@ -5,7 +5,16 @@
 @php
     use Carbon\Carbon;
     Carbon::setLocale('th');
+
+    $statusMap=[
+        'pending'=>'ยื่นคำร้อง',
+        'accepted' => 'รับคำร้อง',
+        'in_progress' => 'กำลังดำเนินการ',
+        'done' => 'ดำเนินการเสร็จ',
+        'cancelled'=> 'ยกเลิกคำร้อง',
+    ];
 @endphp
+
 <script>
     document.addEventListener('DOMContentLoaded', function(){
         const searchingInput = document.getElementById('searchingInput');
@@ -63,12 +72,13 @@
                                         <img src="{{ asset($booking->image_path) }}" alt="รูปภาพ"
                                             style="max-width: 100px; height: auto;">
                                     </td>
-                                    <td>{{ $booking->status }}</td>
+                                    <td>{{ $statusMap[$booking->status]??$booking->status }}</td>
                                     <td>
                                     {{-- <a href="{{route('FetchUpdates',['id'=>$booking->id])}}"> --}}
                                         <button class="btn btn-sm btn-primary" 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#UpdatedModal"
+                                        data-id="{{ $booking->id }}"
                                         >view
                                         </button>
                                     {{-- </a> --}}
@@ -104,19 +114,10 @@
                                           <th>ราคา</th>
                                       </tr>
                                   </thead>
-                                  <tbody>
-                                   @foreach ($updates as $b)
-                                          <tr>
-                                             <td>{{ $b->admin->fullName?? 'ไม่ทราบชื่อ'  }}</td>
-                                              <td>{{ $b->admin->phone?? 'ไม่ทราบชื่อ'  }}</td>
-                                              <td>  {{ Carbon::parse($b->estimated_finish_date)->translatedFormat('j F Y H:i') }}</td>
-                                              <td>{{ $b->updated_note }}</td>
-                                              <td>{{ $b->price }}</td> 
-                                             
-                                             
-                                          </tr>
-                                     @endforeach 
-                                  </tbody>
+                                  <tbody id="updateTableBody">
+                                    <tr><td colspan="5" class="text-muted text-center">กำลังโหลด...</td></tr>
+                                </tbody>
+                                
                               </table>
 
 
@@ -124,10 +125,50 @@
         </div>
     </div>
 </div>
-
 <script>
+    document.querySelectorAll('[data-bs-target="#UpdatedModal"]').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const bookingId = this.getAttribute('data-id');
+            const modalBody = document.getElementById('updateTableBody');
+            modalBody.innerHTML = '<tr><td colspan="5" class="text-muted text-center">กำลังโหลด...</td></tr>';
 
-    
+            fetch(`/myrepair/update/${bookingId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('ไม่สามารถโหลดข้อมูลได้');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.length) {
+                        modalBody.innerHTML = '<tr><td colspan="5" class="text-muted text-center">ไม่พบข้อมูล</td></tr>';
+                        return;
+                    }
 
+                    modalBody.innerHTML = ''; // clear previous
+                    data.forEach(update => {
+                        modalBody.innerHTML += `
+                            <tr>
+                                <td>${update.admin?.fullName ?? 'ไม่ทราบชื่อ'}</td>
+                                <td>${update.admin?.phone ?? 'ไม่ทราบเบอร์'}</td>
+                                <td>${formatDate(update.estimated_finish_date)}</td>
+                                <td>${update.updated_note ?? '-'}</td>
+                                <td>${update.price ?? '-'}</td>
+                            </tr>
+                        `;
+                    });
+                })
+                .catch(error => {
+                    modalBody.innerHTML = `<tr><td colspan="5" class="text-danger text-center">${error.message}</td></tr>`;
+                });
+        });
+    });
+
+    function formatDate(isoDate) {
+        const date = new Date(isoDate);
+        return date.toLocaleString('th-TH', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
 </script>
+
+
 @endsection

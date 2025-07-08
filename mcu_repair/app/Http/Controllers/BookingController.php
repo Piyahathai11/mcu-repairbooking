@@ -47,7 +47,11 @@ class BookingController extends Controller
 
     public function myRepair(){
         $userId = Auth::id();
-        $bookings = Booking::where('user_id',$userId)->get();
+        $order =['pending','accepted', 'in_progress', 'done'];
+        $bookings = Booking::where('user_id',$userId)  
+                    ->orderByRaw("FIELD(status, '" . implode("','", $order) . "')")    
+                    ->get();
+
         $updates=[];
         
         return view('user.myrepair',compact('bookings','updates'));
@@ -56,8 +60,10 @@ class BookingController extends Controller
     }
 
     public function repairOrder(){
-        $bookings = Booking::all();
-        
+        $order =['pending','accepted', 'in_progress', 'done'];
+        $bookings = Booking::whereNotIn('status',['cancelled'])    
+                            ->orderByRaw("FIELD(status, '" . implode("','", $order) . "')")    
+                            ->get();
         return view('admin.repairorder',compact('bookings'));
 
 
@@ -119,14 +125,24 @@ class BookingController extends Controller
 
     }
 
-    public function fetchUpdateNote(Request $request, $id){
+    public function fetchUpdateNote(Request $request, $id)
+    {
         $userId = Auth::id();
-        $bookings = Booking::where('user_id',$userId)->get();
+    
+        // Ensure the user owns the booking
+        $booking = Booking::where('user_id', $userId)
+                          ->where('id', $id)
+                          ->first();
+    
+        if (!$booking) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+    
         $updates = BookingUpdate::with('admin')
-                                 ->where('booking_id',$id)
-                                 ->get();
-
-        return view('user.myrepair',compact('updates','bookings'));
-
+                                ->where('booking_id', $id)
+                                ->get();
+    
+        return response()->json($updates);
     }
+    
 }
