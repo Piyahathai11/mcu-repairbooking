@@ -19,6 +19,22 @@ window.onload= function(){
 
 </script>
 @endif
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const searchingInput = document.getElementById('searchingInput');
+        const tableRows = document.querySelectorAll('#bookingTable tbody tr');
+
+        searchingInput.addEventListener('keyup',function(){
+            const keyword = this.value.toLowerCase();
+
+            tableRows.forEach(row => {
+                const rowText =row.innerText.toLowerCase();
+                row.style.display = rowText.includes(keyword) ? '': 'none';
+            });
+        });
+
+    });
+</script>
 @section('content')
 <div class="container mx-auto mt-4">
     <div class="col-12">
@@ -27,12 +43,12 @@ window.onload= function(){
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="d-flex">
-                        <input type="text" class="form-control me-2" placeholder="Search..." />
+                        <input type="text" id="searchingInput" class="form-control me-2" placeholder="Search..." />
                     </div>
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped w-100">
+                    <table class="table table-bordered table-striped w-100" id="bookingTable">
                         <thead class="thead-dark">
                             <tr>
                                 <th>เลขที่</th>
@@ -94,4 +110,5 @@ window.onload= function(){
         </div>
     </div>
 </div>
+
 @endsection

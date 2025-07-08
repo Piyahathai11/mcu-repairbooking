@@ -6,7 +6,22 @@
     use Carbon\Carbon;
     Carbon::setLocale('th');
 @endphp
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const searchingInput = document.getElementById('searchingInput');
+        const tableRows = document.querySelectorAll('#bookingTable tbody tr');
 
+        searchingInput.addEventListener('keyup',function(){
+            const keyword = this.value.toLowerCase();
+
+            tableRows.forEach(row => {
+                const rowText =row.innerText.toLowerCase();
+                row.style.display = rowText.includes(keyword) ? '': 'none';
+            });
+        });
+
+    });
+</script>
 @section('content')
 <div class="container mx-auto mt-4">
     <div class="col-12 ">
@@ -15,12 +30,12 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="d-flex">
-                        <input type="text" class="form-control me-2" placeholder="Search..." />
+                        <input type="text" id="searchingInput" class="form-control me-2" placeholder="Search..." />
                     </div>
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped w-100">
+                    <table class="table table-bordered table-striped w-100" id="bookingTable">
                         <thead class="thead-dark">
                             <tr>
                                 <th>เลขที่</th>
@@ -50,13 +65,13 @@
                                     </td>
                                     <td>{{ $booking->status }}</td>
                                     <td>
-                                     
+                                    {{-- <a href="{{route('FetchUpdates',['id'=>$booking->id])}}"> --}}
                                         <button class="btn btn-sm btn-primary" 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#UpdatedModal"
                                         >view
                                         </button>
-                                     
+                                    {{-- </a> --}}
                                     </td>
                                     <td>
                                         {{ Carbon::parse($booking->updated_at)->translatedFormat('j F Y H:i') }}
@@ -109,4 +124,10 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    
+
+</script>
 @endsection

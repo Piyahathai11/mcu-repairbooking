@@ -8,7 +8,22 @@
 />
 
 @section('content')
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+      const searchingInput = document.getElementById('searchingInput');
+      const tableRows = document.querySelectorAll('#userTable tbody tr');
 
+      searchingInput.addEventListener('keyup',function(){
+          const keyword = this.value.toLowerCase();
+
+          tableRows.forEach(row => {
+              const rowText =row.innerText.toLowerCase();
+              row.style.display = rowText.includes(keyword) ? '': 'none';
+          });
+      });
+
+  });
+</script>
 <div class="container mt-4">
   <div class="col-12  mx-auto">
     <h1 class="text-xl font-bold mb-4">จัดการสมาชิก</h1>
@@ -18,7 +33,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h5 class="mb-0">สมาชิกทั้งหมด</h5>
           <div class="d-flex">
-            <input type="text" class="form-control me-2" id="searchInput" />
+            <input type="text" class="form-control me-2" id="searchingInput" placeholder="Search..."/>
             <button class="btn btn-primary" id="addForm" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <i class="fas fa-plus"></i>
             </button>
@@ -88,7 +103,7 @@
 
         <!-- Table -->
         <div class="table-responsive">
-          <table class="table table-bordered table-striped w-100">
+          <table class="table table-bordered table-striped w-100" id="userTable">
             <thead class="table-light">
               <tr>
                 <th>ชื่อ-นามสกุล</th>
