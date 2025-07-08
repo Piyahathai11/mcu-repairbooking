@@ -26,7 +26,7 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN,ADMIN'])->group(function () {
     Route::get('/adminsidebar', fn() => view('layouts.AdminSidebar'));
     Route::get('/repairorder', [BookingController::class, 'repairOrder']);
     Route::post('/repairorder/{id}', [BookingController::class, 'UpdateStatus'])->name('updateStatus');
-    Route::get('/update_form/{id}', fn() => view('admin.update_form'))->name('showForm');
+    Route::get('/update_form/{id}',[BookingController::class, 'UpdateForm'])->name('UpdateForm');
     Route::post('/update_form/update/{id}',[BookingController::class, 'updateNote'])->name('updateNote');
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 

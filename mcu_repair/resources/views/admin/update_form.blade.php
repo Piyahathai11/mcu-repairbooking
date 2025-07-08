@@ -8,8 +8,8 @@
     <div class="container mt-5 ">
       <div class="card  p-4">
         <h2 class="mb-4">อัปเดตเพิ่มเติม</h2>
- 
-        <form method="POST" action="{{route('updateNote')}}">
+        @foreach ($booking as $bookings)
+        <form method="POST" action="{{route('updateNote',['id'=> $bookings->id])}}">
           @csrf
           <div class="form-group mb-3">
             <label>วันที่เสร็จ/คาดว่าจะเสร็จ</label>
@@ -38,7 +38,9 @@
           <button type="submit" class="pinkbutton">
            บันทึก
           </button>
+
         </form>
+        @endforeach
       </div>
     </div>
   </div>

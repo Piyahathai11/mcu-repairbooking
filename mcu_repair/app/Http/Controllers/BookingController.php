@@ -90,6 +90,12 @@ class BookingController extends Controller
 
     // updateForm
 
+    public function updateForm(Request $request,$id){
+        $booking = Booking::where('id',$id)->get();
+        
+        return view('admin.update_form',compact('booking'));
+    }
+
     public function updateNote(Request $request, $id){
 
         $booking = Booking::find($id);

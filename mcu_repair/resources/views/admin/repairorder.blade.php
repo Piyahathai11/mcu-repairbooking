@@ -78,7 +78,7 @@ window.onload= function(){
                                     </td>
                                     <td>
                                       
-                                           <a href="{{route('showForm',['id'=> $booking->id])}}"><button class="btn btn-sm btn-primary">อัปเดต</button></a>
+                                           <a href="{{route('UpdateForm',['id'=> $booking->id])}}"><button class="btn btn-sm btn-primary">อัปเดต</button></a>
                                         
                                     </td>
                                     <td>
