@@ -18,7 +18,6 @@ class BookingController extends Controller
 
     public function create (Request $request){
         $imagePath = null;
-
         if($request->hasFile('image')){
             $image = $request->file('image');
             $imageName = time().'_'.$image->getClientOriginalName();
@@ -49,8 +48,9 @@ class BookingController extends Controller
     public function myRepair(){
         $userId = Auth::id();
         $bookings = Booking::where('user_id',$userId)->get();
+        $updates=[];
         
-        return view('user.myrepair',compact('bookings'));
+        return view('user.myrepair',compact('bookings','updates'));
 
 
     }
@@ -92,14 +92,14 @@ class BookingController extends Controller
 
     public function updateForm(Request $request,$id){
         $booking = Booking::where('id',$id)->get();
+      
         
         return view('admin.update_form',compact('booking'));
     }
 
     public function updateNote(Request $request, $id){
-
         $booking = Booking::find($id);
-        
+        $user = Auth::id();
         $request->validate([
             'estimated_finish_date' => 'required|date',
             'updated_note' => 'required|string',
@@ -111,10 +111,22 @@ class BookingController extends Controller
             'estimated_finish_date' => $request->input('estimated_finish_date'),
             'updated_note' => $request->input('updated_note'),
             'total_cost' => $request->input('total_cost'),
+            'admin_id' => $user,
         ]);
 
 
         return redirect()->back()->with('success','update successfully');
+
+    }
+
+    public function fetchUpdateNote(Request $request, $id){
+        $userId = Auth::id();
+        $bookings = Booking::where('user_id',$userId)->get();
+        $updates = BookingUpdate::with('admin')
+                                 ->where('booking_id',$id)
+                                 ->get();
+
+        return view('user.myrepair',compact('updates','bookings'));
 
     }
 }

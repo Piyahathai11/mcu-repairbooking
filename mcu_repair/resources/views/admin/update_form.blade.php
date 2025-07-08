@@ -1,7 +1,15 @@
 @extends('layouts.NormLayout')
 
 @section('title','update form')
+@if(session('success'))
 
+<script>
+  window.onload = function (){
+    alert("{{session('success')}}");
+  }
+  </script>
+
+@endif
 
 @section('content')
 <div class="col-lg-10 col-md-8 ">

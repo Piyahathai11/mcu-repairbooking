@@ -49,4 +49,5 @@ Route::middleware(['auth', 'web', 'role:USER'])->group(function () {
     Route::get('/booking', [BookingController::class, 'showForm'])->name('booking');
     Route::post('/booking', [BookingController::class, 'create'])->middleware('auth')->name('booking.form');
     Route::get('/myrepair', [BookingController::class, 'myRepair'])->name('myrepair');
+    Route::get('/myrepair/update/{id}',[BookingController::class, 'fetchUpdateNote'])->name('FetchUpdates');
 });
