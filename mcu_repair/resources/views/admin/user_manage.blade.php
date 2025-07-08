@@ -140,7 +140,7 @@
                 </td>
                 <td>
 
-                    <button type="button"class="pinkbutton" data-bs-toggle="modal" data-bs-target="#UserEditModal{{$u->id}}">
+                    <button type="button"class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#UserEditModal{{$u->id}}">
                       <i class="bi bi-pencil-square"></i>
                     </button>
 
@@ -148,7 +148,7 @@
    
                   <form method="POST" action="{{ route('userDelete', ['id' => $u->id]) }}">
                     @csrf
-                    <button class="btn btn-danger btn-sm">
+                    <button class="btn btn-primary btn-sm">
                       <i class="fas fa-minus"></i>
                     </button>
                   </form>

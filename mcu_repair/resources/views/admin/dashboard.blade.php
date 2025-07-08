@@ -7,6 +7,14 @@
 @php
     use Carbon\Carbon;
     Carbon::setLocale('th');
+
+    $statusMap = [
+        'pending' => 'ยื่นคำร้อง',
+        'accepted' => 'รับคำร้อง',
+        'in_progress' => 'กำลังดำเนินการ',
+        'done' => 'ดำเนินการเสร็จสิ้น',
+        'cancelled' => 'ยกเลิก',
+        ];
 @endphp
 
 
@@ -78,7 +86,7 @@
                 <tbody>
                     @foreach ($statusCounts as $status => $count)
                         <tr>
-                            <td>{{ $status }}</td>
+                            <td>{{ $statusMap[$status] }}</td>
                             <td>{{ $count }}</td>
                             <td>
                                 <a href="{{ route('dashboard', ['status' => $status]) }}" class="btn btn-primary btn-sm">ดูรายการ</a>

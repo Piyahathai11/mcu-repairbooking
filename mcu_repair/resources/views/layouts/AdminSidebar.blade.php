@@ -70,6 +70,7 @@
       data-bs-toggle="dropdown"
       aria-expanded="false"
       role="button"
+      style="text-decoration:none;"
     >
       <i class="bi bi-person-circle fs-4 me-2"></i> 
     </a>

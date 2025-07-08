@@ -38,7 +38,7 @@ window.onload= function(){
 @section('content')
 <div class="container mx-auto mt-4">
     <div class="col-12">
-        <h1 class="text-xl font-bold mb-4">รายการแจ้งซ่อม</h1>
+        <h1 class=" mb-4">รายการแจ้งซ่อม</h1>
         <div class="card p-4 w-100 rounded bg-white">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -49,7 +49,7 @@ window.onload= function(){
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped w-100" id="bookingTable">
-                        <thead class="thead-dark">
+                        <thead >
                             <tr>
                                 <th>เลขที่</th>
                                 <th>ชื่อ-นามสกุล</th>

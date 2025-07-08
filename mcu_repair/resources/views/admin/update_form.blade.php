@@ -43,7 +43,7 @@
               name="total_cost"
             />
           </div>
-          <button type="submit" class="pinkbutton">
+          <button type="submit" class="btn btn-primary">
            บันทึก
           </button>
 
