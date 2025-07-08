@@ -140,7 +140,7 @@
                 </td>
                 <td>
 
-                    <button type="button"class="pinkbutton" data-bs-toggle="modal" data-bs-target="#UserEditModal">
+                    <button type="button"class="pinkbutton" data-bs-toggle="modal" data-bs-target="#UserEditModal{{$u->id}}">
                       <i class="bi bi-pencil-square"></i>
                     </button>
 
@@ -164,11 +164,11 @@
       @foreach ($users as $user)
           
 
-        <div class="modal fade" id="UserEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="UserEditModal{{ $user->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $user->id }}" aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">แก้ไขข้้อมูลสมาชิก</h5>
+                    <h5 class="modal-title">แก้ไขข้อมูลสมาชิก</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body table-responsive">
@@ -224,25 +224,32 @@
                 required
                 />
 
-                <label class="form-label">รหัสผ่าน</label>
-                <div class="input-group mb-3">
-                <input
-                    type="password"
-                    class="form-control">
-                <button
-                    type="button"
-                    class="btn btn-outline-secondary"
-                >
-                    <i class="bi bi-eye-slash-fill"></i> : <i class="bi bi-eye"></i>
-                </button>
-                </div>
-     
-                <form method="POST" action="{{route('UpdateUser',['id'=>$user->id])}}">
-                    @csrf
+               
+                  <label class="form-label">รหัสผ่าน</label>
+                      <div class="input-group mb-3">
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="passwordInput{{ $user->id }}"
+                          name="password"
+                          value="{{ $user->password }}"
+                        />
+                          <button 
+                            type="button" 
+                            class="btn btn-outline-secondary form-password-action" 
+                            aria-label="Toggle password visibility"
+                            onclick="togglePasswordVisibility('passwordInput{{ $user->id }}', this)"
+                          >
+                            <i class="bi bi-eye-slash-fill"></i>
+                          </button>
+                      </div>
+
+            
+              
                     <button type="submit" class="btn btn-primary w-100">
                     บันทึกข้อมูล
                     </button>
-                </form>
+         
             </form>
                 </div>
             </div>
@@ -255,5 +262,20 @@
 
   </div>
 </div>
+<script>
+  function togglePasswordVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector('i');
 
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.classList.remove('bi-eye-slash-fill');
+      icon.classList.add('bi-eye-fill');
+    } else {
+      input.type = 'password';
+      icon.classList.remove('bi-eye-fill');
+      icon.classList.add('bi-eye-slash-fill');
+    }
+  }
+</script>
 @endsection
