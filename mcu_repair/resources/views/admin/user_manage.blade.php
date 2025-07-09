@@ -7,6 +7,24 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 />
 
+@if(session('failed'))
+<script>
+  window.onload = function (){
+    alert("{{session('failed')}}");
+  }
+  </script>
+
+@else
+
+<script>
+  window.onload = function (){
+    alert("{{session('success')}}");
+  }
+  </script>
+
+
+@endif
+
 @section('content')
 <script>
   document.addEventListener('DOMContentLoaded', function(){
@@ -181,6 +199,7 @@
                 <input
                 type="text"
                 class="form-control mb-3"
+                name="username"
                 placeholder={{$user->username}}
                 value={{$user->username}}
                 required
@@ -189,6 +208,7 @@
                 <input
                 type="text"
                 class="form-control mb-3"
+                name="fullName"
                 placeholder={{$user->fullName}} 
                 value={{$user->fullName}}
                 required
@@ -198,6 +218,7 @@
                 <input
                 type="text"
                 class="form-control mb-3"
+                name="position"
                 placeholder={{$user->position}} 
                 value={{$user->position}}
                 required
@@ -206,7 +227,7 @@
                 <label class="form-label">บุคลากร</label>
                 <select
                 class="form-select mb-3"
-                placeholder={{$user->personnel}}
+                name="personnel"
                 value={{$user->personnel}}
                 required
                 >
@@ -215,10 +236,21 @@
                 <option value="บุคลากรภายนอก">บุคลากรภายนอก</option>
                 </select>
 
+                <label class="form-label">อีเมลล์</label>
+                <input
+                type="tel"
+                class="form-control mb-3"
+                name="email"
+                placeholder={{$user->email}}
+                value={{$user->email}}
+                required
+                />
+
                 <label class="form-label">เบอร์ติดต่อ</label>
                 <input
                 type="tel"
                 class="form-control mb-3"
+                name="phone"
                 placeholder={{$user->phone}}
                 value={{$user->phone}}
                 required

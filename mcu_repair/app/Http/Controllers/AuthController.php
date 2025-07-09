@@ -115,55 +115,35 @@ class AuthController extends Controller
     }
 
         
-    public function UpdateUser(Request $request,$id){
-        $user = User::find($id);
-        
+   
+     public function UpdateUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
         $request->validate([
             'fullName' => 'required|string',
-            'username' => 'required',
-            'email' => 'required'
+            'username' => 'required|string',
+            'email' => 'required|email',
+            'position' => 'required|string',
+            'personnel' => 'required|string',
+            'phone' => 'required',
         ]);
-
+    
         $user->fullName = $request->input('fullName');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-        $user->password= $request->input('password');
         $user->position = $request->input('position');
         $user->personnel = $request->input('personnel');
         $user->phone = $request->input('phone');
-   
-        $user->save();
+        $user->password = $request->input('password');
+  
 
-        return redirect()->back()
-        ->with('success','user infomation changed')
-        ->with(compact('user'));
     
-
-
-
+       if($user->save()){
+        return redirect()->back()->with('success', 'update successfully');
+       }else{
+        return redirect()->back()->with('failed', 'update failed');
+       }
     }
     
-
-
-    public function UpdateUserStatus(Request $request,$id){
-
-        $status = $request->validate([
-            'status' => 'required|string',
-        ]);
-
-        $users = USER::find($id);
-        $users->status = $request->input('status');
-        $users->save();
-
-        if($users->status === "reject"){
-            $users->delete();
-        }
-
-        return redirect()->back()
-        ->with('success','status changed')
-        ->with(compact('users'));
-
-        
-    }
 
 }

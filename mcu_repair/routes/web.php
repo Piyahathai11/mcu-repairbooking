@@ -39,7 +39,7 @@ Route::middleware(['web','auth', 'role:SUPER_ADMIN'])->group(function () {
     Route::post('/user_management/update/{id}',[AuthController::class, 'UpdateUserStatus'])->name('UpdateUserStatus');
     Route::post('/user_management/delete/{id}',[AuthController::class, 'userDelete'])->name('userDelete');
     Route::post('/user_management',[AuthController::class, 'AddAdmin'])->name('AddAdmin');
-    Route::post('/user_management/updateUser/{id}',[AuthController::class,'UpdateUser'])->name('UpdateUser');
+    Route::post('/user_management/edituser/{id}',[AuthController::class,'UpdateUser'])->name('UpdateUser');
 
 });
 
