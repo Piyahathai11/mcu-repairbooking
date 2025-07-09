@@ -6,13 +6,13 @@
 
 
 <div class="row ms-5 mt-5 ">
-    <div class="col-10 col-md-3 d-flex justify-content-center mx-5">
-                <div style=" width: 700px; height: 700px;">
+    <div class="col-lg-4 col-md-3 d-flex justify-content-center mx-5">
+                <div style=" width: 900px; max-height: 900px;">
                         <dotlottie-player
                             src="https://lottie.host/fcf886d4-bb60-431c-a388-835b6a06d2b2/TuGHvjGkV4.lottie"
                             background="transparent"
                             speed="1"
-                            style="width: 100%; height: 100%;"
+                            style="width: 100%; height: 50%;"
                             loop
                             autoplay
                         ></dotlottie-player>

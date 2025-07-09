@@ -39,17 +39,15 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="d-flex">
-                        <input type="text" id="searchingInput" class="form-control me-2" placeholder="Search..." />
+                        <input type="text" id="searchingInput" class="form-control me-2" placeholder="ค้นหา..." />
                     </div>
                 </div>
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped w-100" id="bookingTable">
-                        <thead class="thead-dark">
+                        <thead >
                             <tr>
                                 <th>เลขที่</th>
-                                <th>ชื่อ-นามสกุล</th>
-                                <th>เบอร์ติดต่อ</th>
                                 <th>ประเภท</th>
                                 <th>รายละเอียดปัญหา</th>
                                 <th>สถานที่เกิดปัญหา</th>
@@ -63,8 +61,6 @@
                             @foreach ($bookings as $booking)
                                 <tr>
                                     <td>{{ $booking->id }}</td>
-                                    <td>{{ $booking->fullName }}</td>
-                                    <td>{{ $booking->phone }}</td>
                                     <td>{{ $booking->category }}</td>
                                     <td>{{ $booking->detail }}</td>
                                     <td>{{ $booking->place }}</td>
@@ -79,7 +75,7 @@
                                         data-bs-toggle="modal" 
                                         data-bs-target="#UpdatedModal"
                                         data-id="{{ $booking->id }}"
-                                        >view
+                                        >ดูรายละเอียด
                                         </button>
                                     {{-- </a> --}}
                                     </td>

@@ -1,9 +1,17 @@
-h1,h2, h3, h4,h5,p {
+h2, h3, h4,h5 {
     color: #e844dd;
     text-align: center;
     font-family: "Sarabun", sans-serif;
+    
   }
+  h1{
+    text-align: center;
+    font-family: "Sarabun", sans-serif;
+  }
+  label,th,tr{
+    font-family: "Sarabun", sans-serif;
 
+  }
 a{
   text-decoration: none;
   color:rgb(225, 27, 199);
@@ -21,8 +29,14 @@ a{
   background-color: #FFB8E0;   
   border:none;
 }
+.table-bordered,
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #d6cdd6 !important;
+   }
+
  table th{
-  background-color: #FCBCF8 !important;
+  background-color: #f9dbf7 !important;
  }
  table tbody{
   background-color: #cd72c7 !important;
@@ -40,6 +54,10 @@ a{
     border-color: #c91bb7;       
   }
   
+  .btn-login{
+    background-color: #e844dd;   
+    color: #fff;
+  }
   .custom-select {
     border: none;
   }

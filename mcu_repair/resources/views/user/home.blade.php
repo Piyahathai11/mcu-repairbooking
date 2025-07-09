@@ -3,7 +3,7 @@
 @section('title', 'หน้าแรก')
 
 @section('content')
-  <h2 class="mt-2 mb-4">คำแนะนำการลงทะเบียน</h2>
+  <h1 class="mt-2 mb-4">คำแนะนำการลงทะเบียน</h1>
   
   <div class="row mt-5 mx-auto mb-5">
      <div class="d-flex flex-row justify-content-center flex-wrap gap-5">
@@ -24,9 +24,10 @@
     </div>
   </div>
 
-  <div class="col-lg-10">
-    <h2 class="fw-bold mb-4">ประวัติการแจ้งซ่อม</h2>
-  
+  <div class="col-10">
+    <div class="d-flex justify-content-center align-items-center">
+    <h1 class="mx-auto mb-4">ประวัติการแจ้งซ่อม</h1>
+    </div>
 
 
 

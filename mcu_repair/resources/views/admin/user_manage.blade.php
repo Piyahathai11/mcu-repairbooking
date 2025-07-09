@@ -120,10 +120,10 @@
                 <th>Username</th>
                 <th>ตำแหน่ง</th>
                 <th>บุคลากร</th>
-                <th>อีเมลล์</th>
                 <th>เบอร์ติดต่อ</th>
                 <th>สถานะ</th>
                 <th>ดำเนินการ</th>
+                <th>role</th>
               </tr>
             </thead>
             <tbody>
@@ -133,8 +133,8 @@
                 <td>{{ $u->username }}</td>
                 <td>{{ $u->position }}</td>
                 <td>{{ $u->personnel }}</td>
-                <td>{{ $u->email }}</td>
                 <td>{{ $u->phone }}</td>
+                <td>{{ $u->role }}</td>
                 <td> <form method="POST" action="{{ route('UpdateUserStatus', ['id' => $u->id]) }}" >
                   @csrf
                   <select class="form-select" name="status" onchange="this.form.submit()">

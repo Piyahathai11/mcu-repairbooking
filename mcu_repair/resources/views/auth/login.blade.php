@@ -50,14 +50,14 @@
                 
 
      
-                  <button type="submit" class="pinkbutton mb-4">
+                  <button type="submit" class="btn btn-login mb-4">
                     เข้าสู่ระบบ
                   </button>
                  
                 </form>
 
                 <a href="/register">
-                  <button type="submit" class="pinkbutton mb-4 mt-3">
+                  <button type="submit" class="btn btn-login mb-4 mt-3">
                     สมัครสมาชิก
                 </button>
                   </a>
