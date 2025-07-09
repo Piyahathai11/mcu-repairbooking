@@ -7,21 +7,13 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 />
 
-@if(session('failed'))
-<script>
-  window.onload = function (){
-    alert("{{session('failed')}}");
-  }
-  </script>
-
-@else
+@if(session('success'))
 
 <script>
   window.onload = function (){
     alert("{{session('success')}}");
   }
   </script>
-
 
 @endif
 
